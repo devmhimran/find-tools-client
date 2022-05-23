@@ -6,6 +6,7 @@ import Navbar from './component/Pages/Home.js/Navbar';
 import SignIn from './component/Pages/SignIn/SignIn';
 import SignUp from './component/Pages/SignUp/SignUp';
 import AllProducts from './component/Pages/AllProducts/AllProducts';
+import ErrorPage from './component/Pages/Errorpage/ErrorPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/allproducts' element={<AllProducts></AllProducts>}></Route>
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='*' element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </div>
   );
