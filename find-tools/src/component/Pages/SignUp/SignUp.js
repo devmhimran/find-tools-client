@@ -1,12 +1,18 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { AiOutlineGoogle } from 'react-icons/ai';
+import singUpImg from '../../../Assets/find-tools-singUp.gif'
 
 const SignUp = () => {
+    const { register, formState: { errors }, handleSubmit } = useForm();
+  const onSubmit = data => console.log(data);
     return (
         <div className='container mx-auto'>
             <div className="hero p-8 lg:p-40 rounded-2xl">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="register__image">
-                        <img className='w-9/12 mx-auto' src={registerImage} alt="" />
+                        <img className='w-9/12 mx-auto' src={singUpImg} alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 
@@ -102,8 +108,8 @@ const SignUp = () => {
                                         })} />
                                     {errors.confirmPassword?.type === 'required' && <span className='text-sm text-red-500 mt-2'>{errors.confirmPassword.message}</span>}
                                     {errors.confirmPassword?.type === 'minLength' && <span className='text-sm text-red-500 mt-2'>{errors.confirmPassword.message}</span>}
-                                    <span className='text-sm text-red-500 mt-2'>{errorMessage}</span>
-                                    <span className='mt-2 text-red-500'>{userError}</span>
+                                    {/* <span className='text-sm text-red-500 mt-2'>{errorMessage}</span> */}
+                                    {/* <span className='mt-2 text-red-500'>{userError}</span> */}
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-primary">Sign up</button>
