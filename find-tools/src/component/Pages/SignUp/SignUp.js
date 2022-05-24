@@ -1,15 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import singUpImg from '../../../Assets/find-tools-singUp.gif'
+import auth from '../../firebase.init';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, userUpdateError] = useUpdateProfile(auth);
+    const [passWordError, setPasswordError] = useState('');
+    const [user1] = useAuthState(auth);
+    const [userPhoto, setUserPhoto] = useState('');
+    let userError;
+    const onSubmit = async (data) => {
+        const email = data.email;
+        const name = data.name;
+        const password = data.password;
+        const confirmPassword = data.confirmPassword;
+        const photo = data.profileImage[0];
+        const imageApi = '5b01dc41485f68cbd575874e6d5aeeed';
+        const formData = new FormData();
+        formData.append('image', photo);
+        if (password !== confirmPassword) {
+            setPasswordError("Password doesn't matched");
+        }
+        const url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                setUserPhoto(result.data.image.url)
+             
+                console.log(result.data.image.url)
+            })
+
+          await createUserWithEmailAndPassword(email, password);
+          await updateProfile({ displayName: name, photoURL: userPhoto });
+        
+    };
+    console.log(userPhoto);
     return (
         <div className='container mx-auto'>
-            <div className="hero p-8 lg:p-40 rounded-2xl">
+            <div className="hero p-8 lg:p-20 rounded-2xl">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="register__image">
                         <img className='w-9/12 mx-auto' src={singUpImg} alt="" />
@@ -40,6 +77,7 @@ const SignUp = () => {
                                         })} />
                                     {errors.name?.type === 'required' && <span className='text-sm text-red-500 mt-2'>{errors.name.message}</span>}
                                     {errors.name?.type === 'pattern' && <span className='text-sm text-red-500 mt-2'>{errors.name.message}</span>}
+
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -64,12 +102,22 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Image</span>
                                     </label>
-                                    <input type="file" className="block w-full text-sm text-purple-700
+                                    <input type="file" name='profileImage' className="block w-full text-sm text-purple-700
                                     file:mr-4 file:py-2 file:px-4
                                     file:rounded-full file:border-0
                                     file:text-sm file:font-semibold
                                     file:bg-purple-100 file:text-violet-700
-                                    hover:file:bg-purple-200" />
+                                    hover:file:bg-purple-200"
+
+                                        {...register("profileImage", {
+                                            required: {
+                                                value: true,
+                                                message: "Image Required"
+                                            },
+
+                                        })} />
+                                    {errors.profileImage?.type === 'required' && <span className='text-sm text-red-500 mt-2'>{errors.profileImage.message}</span>}
+                                    {errors.profileImage?.type === 'pattern' && <span className='text-sm text-red-500 mt-2'>{errors.profileImage.message}</span>}
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -108,8 +156,8 @@ const SignUp = () => {
                                         })} />
                                     {errors.confirmPassword?.type === 'required' && <span className='text-sm text-red-500 mt-2'>{errors.confirmPassword.message}</span>}
                                     {errors.confirmPassword?.type === 'minLength' && <span className='text-sm text-red-500 mt-2'>{errors.confirmPassword.message}</span>}
-                                    {/* <span className='text-sm text-red-500 mt-2'>{errorMessage}</span> */}
-                                    {/* <span className='mt-2 text-red-500'>{userError}</span> */}
+                                    <span className='text-sm text-red-500 mt-2'>{userError}</span>
+                                    <span className='text-sm text-red-500 mt-2'>{passWordError}</span>
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-primary">Sign up</button>
