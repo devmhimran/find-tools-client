@@ -7,6 +7,9 @@ import SignIn from './component/Pages/SignIn/SignIn';
 import SignUp from './component/Pages/SignUp/SignUp';
 import AllProducts from './component/Pages/AllProducts/AllProducts';
 import ErrorPage from './component/Pages/Errorpage/ErrorPage';
+import Dashboard from './component/Pages/Dashboard/Dashboard';
+import ManageAllOrders from './component/Pages/ManageAllOrders/ManageAllOrders';
+import ManageProducts from './component/Pages/ManageProducts/ManageProducts';
 
 function App() {
   return (
@@ -18,6 +21,17 @@ function App() {
         <Route path='/allproducts' element={<AllProducts></AllProducts>}></Route>
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='dashboard' element={<Dashboard></Dashboard>}>
+          <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
+          <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
+        </Route>
+        {/* <Route path="dashboard" element={
+            <Dashboard></Dashboard>
+   
+        } >
+           <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
+           <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
+        </Route> */}
         <Route path='*' element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </div>
