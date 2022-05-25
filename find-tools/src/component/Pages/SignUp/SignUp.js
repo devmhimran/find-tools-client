@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import singUpImg from '../../../Assets/find-tools-singUp.gif'
 import auth from '../../firebase.init';
@@ -13,37 +13,51 @@ const SignUp = () => {
     const [updateProfile, updating, userUpdateError] = useUpdateProfile(auth);
     const [passWordError, setPasswordError] = useState('');
     const [user1] = useAuthState(auth);
-    const [userPhoto, setUserPhoto] = useState('');
+    const [userImage, setUserImage] = useState(null);
+    const navigate = useNavigate();
     let userError;
+
     const onSubmit = async (data) => {
         const email = data.email;
         const name = data.name;
         const password = data.password;
         const confirmPassword = data.confirmPassword;
-        const photo = data.profileImage[0];
+        // const photo = data.profileImage[0];
+        const photo = data.profileImage;
         const imageApi = '5b01dc41485f68cbd575874e6d5aeeed';
         const formData = new FormData();
         formData.append('image', photo);
         if (password !== confirmPassword) {
             setPasswordError("Password doesn't matched");
         }
-        const url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(result => {
-                setUserPhoto(result.data.image.url)
-             
-                console.log(result.data.image.url)
-            })
 
-          await createUserWithEmailAndPassword(email, password);
-          await updateProfile({ displayName: name, photoURL: userPhoto });
-        
+
+        // const url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        //     .then(res => res.json())
+        //     .then((result) => {
+        //         const userProfileImage = result.data.image.url
+        //         setUserImage(userProfileImage);
+
+        //         console.log('result image', result.data.image.url)
+        //     })
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name, photoURL: photo });
+
     };
-    console.log(userPhoto);
+    if (error) {
+        userError = error?.message;
+    }
+    if (user) {
+        navigate('/');
+    }
+
+    console.log(userImage);
+    console.log(user1);
     return (
         <div className='container mx-auto'>
             <div className="hero p-8 lg:p-20 rounded-2xl">
@@ -102,13 +116,7 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Image</span>
                                     </label>
-                                    <input type="file" name='profileImage' className="block w-full text-sm text-purple-700
-                                    file:mr-4 file:py-2 file:px-4
-                                    file:rounded-full file:border-0
-                                    file:text-sm file:font-semibold
-                                    file:bg-purple-100 file:text-violet-700
-                                    hover:file:bg-purple-200"
-
+                                    <input type="text" name='profileImage' className="input input-bordered"
                                         {...register("profileImage", {
                                             required: {
                                                 value: true,

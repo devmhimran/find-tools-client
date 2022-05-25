@@ -1,8 +1,15 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 import './Navbar.css'
 
 const Navbar = () => {
+    const [user] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth);
+    };
     const navMenu =
         <>
             <li><Link to='/'>Home</Link></li>
@@ -31,23 +38,36 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-end">
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://api.lorem.space/image/face?hash=33791" alt=''/>
-                            </div>
-                        </label>
-                        <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                            <li>
-                                <Link to='/' className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </Link>
-                            </li>
+                    {
+                        user ?
+                            <>
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img src={user.photoURL} alt='' />
+                                        </div>
+                                    </label>
+                                    <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                        <li>
+                                            <p to='/' className="justify-between capitalize">
+                                                {
+                                                    user ? user.displayName : ''
+                                                }
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <Link to='/' className="justify-between">
+                                                Profile
+                                            </Link>
+                                        </li>
 
-                            <li><Link to='/'>Logout</Link></li>
-                        </ul>
-                    </div>
+                                        <li><button onClick={logout}>Logout</button></li>
+                                    </ul>
+                                </div>
+                            </>:
+                            <Link className="btn btn-secondary" to='/signin'>Sign in</Link>
+
+                    }
                 </div>
             </div>
 
