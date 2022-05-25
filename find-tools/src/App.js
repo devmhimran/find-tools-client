@@ -12,6 +12,8 @@ import ManageAllOrders from './component/Pages/ManageAllOrders/ManageAllOrders';
 import ManageProducts from './component/Pages/ManageProducts/ManageProducts';
 import Loading from './component/Pages/Loading/Loading';
 import RequireAuth from './component/Pages/RequireAuth/RequireAuth';
+import AddProduct from './component/Pages/AddProduct/AddProduct';
+import MakeAdmin from './component/Pages/MakeAdmin/MakeAdmin';
 
 function App() {
   return (
@@ -31,14 +33,9 @@ function App() {
         }>
           <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
           <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
-        </Route>
-        {/* <Route path="dashboard" element={
-            <Dashboard></Dashboard>
-   
-        } >
-           <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
-           <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
-        </Route> */}
+          <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
+          <Route path='makeadmin' element={<MakeAdmin></MakeAdmin>}></Route>
+          </Route>
         <Route path='*' element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </div>
