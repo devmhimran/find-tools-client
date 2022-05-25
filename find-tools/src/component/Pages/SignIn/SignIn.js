@@ -1,12 +1,16 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendEmailVerification, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import { AiOutlineGoogle } from 'react-icons/ai';
+import Loading from '../Loading/Loading';
 
 const SignIn = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [sendEmailVerification, sending, emailError] = useSendEmailVerification(auth);
     const navigate = useNavigate();
     const location = useLocation();
     let userError;
@@ -15,11 +19,17 @@ const SignIn = () => {
         const password = data.password;
         signInWithEmailAndPassword(email, password);
     }
+    if(loading || gLoading){
+        return <Loading></Loading>
+    }
     if (error) {
         userError = error?.message;
     }
     let from = location.state?.from?.pathname || "/";
-    if (user) {
+    const handleGoogleLogin = () =>{
+        signInWithGoogle();
+    }
+    if (user || gUser) {
         navigate(from, { replace: true });
     }
     return (
@@ -79,6 +89,9 @@ const SignIn = () => {
                         </div>
                     </form>
                     <div className="divider">OR</div>
+                    <div className="form-control mt-6">
+                                <button onClick={handleGoogleLogin} className="btn bg-white text-black hover:bg-white hover:shadow-lg shadow-neutral-200"><span className='mr-2 text-2xl'><AiOutlineGoogle></AiOutlineGoogle></span> Google Sign In</button>
+                            </div>
                     <div className="creat__account__Link mt-4 text-center">
                         <Link to='/signup' className="link link-primary no-underline font-medium">Create Account</Link>
                     </div>

@@ -7,6 +7,7 @@ import './Navbar.css'
 
 const Navbar = () => {
     const [user] = useAuthState(auth);
+    console.log(user)
     const logout = () => {
         signOut(auth);
     };
@@ -64,13 +65,13 @@ const Navbar = () => {
                                         <li><button onClick={logout}>Logout</button></li>
                                     </ul>
                                 </div>
-                            </>:
+                            </> :
                             <Link className="btn btn-primary" to='/signin'>Sign in</Link>
 
                     }
-                    <label for="dashboard-drawer" tabIndex="0" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
+                    <label htmlFor="dashboard-drawer" tabIndex="0" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
                 </div>
             </div>
 

@@ -181,7 +181,7 @@ const SignUp = () => {
                                 <button className="btn bg-white text-black hover:bg-white hover:shadow-lg shadow-neutral-200"><span className='mr-2 text-2xl'><AiOutlineGoogle></AiOutlineGoogle></span> Google Sign In</button>
                             </div>
                             <div className="creat__account__Link mt-4 text-center">
-                                <p>Already have account?</p> <Link to='/login' className="link link-primary no-underline font-medium">Sign in</Link>
+                                <p>Already have account?</p> <Link to='/signin' className="link link-primary no-underline font-medium">Sign in</Link>
                             </div>
                         </div>
                     </div>
