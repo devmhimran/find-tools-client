@@ -4,21 +4,23 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import singUpImg from '../../../Assets/find-tools-singUp.gif'
 import auth from '../../firebase.init';
-import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { updateProfile } from 'firebase/auth';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [sendEmailVerification, sending, emailError] = useSendEmailVerification(auth);
     const [updateProfile, updating, userUpdateError] = useUpdateProfile(auth);
     const [passWordError, setPasswordError] = useState('');
-    const [user1] = useAuthState(auth);
-    const [userImage, setUserImage] = useState(null);
+    const [token] = useToken(user || gUser);
     const navigate = useNavigate();
     const location = useLocation();
     let userError;
-    const imageApi = '5b01dc41485f68cbd575874e6d5aeeed';
+    // const [userImage, setUserImage] = useState(null);
+    // const imageApi = '5b01dc41485f68cbd575874e6d5aeeed';
 
     const onSubmit = async (data) => {
         const email = data.email;
@@ -53,15 +55,18 @@ const SignUp = () => {
         await sendEmailVerification();
         // console.log(photoURL);
     };
-    if (error) {
+    const handleGoogleLogin = () => {
+        signInWithGoogle();
+    }
+    if (error || gError) {
         userError = error?.message;
     }
     let from = location.state?.from?.pathname || "/";
-    if(user){
+    if(user || gUser){
         navigate(from, {replace:true});
     }
 
-    console.log(user1);
+    // console.log(user1);
     
     return (
         <div className='container mx-auto'>
@@ -179,8 +184,8 @@ const SignUp = () => {
 
                             <div className="divider">OR</div>
                             <div className="form-control mt-6">
-                                <button className="btn bg-white text-black hover:bg-white hover:shadow-lg shadow-neutral-200"><span className='mr-2 text-2xl'><AiOutlineGoogle></AiOutlineGoogle></span> Google Sign In</button>
-                            </div>
+                        <button onClick={handleGoogleLogin} className="btn bg-white text-black hover:bg-white hover:shadow-lg shadow-neutral-200"><span className='mr-2 text-2xl'><AiOutlineGoogle></AiOutlineGoogle></span> Google Sign In</button>
+                    </div>
                             <div className="creat__account__Link mt-4 text-center">
                                 <p>Already have account?</p> <Link to='/signin' className="link link-primary no-underline font-medium">Sign in</Link>
                             </div>
