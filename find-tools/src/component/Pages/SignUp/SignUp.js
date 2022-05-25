@@ -66,7 +66,7 @@ const SignUp = () => {
         navigate(from, {replace:true});
     }
 
-    // console.log(user1);
+    console.log(user || gUser);
     
     return (
         <div className='container mx-auto'>
