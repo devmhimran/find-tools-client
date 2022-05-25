@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import singUpImg from '../../../Assets/find-tools-singUp.gif'
 import auth from '../../firebase.init';
@@ -10,11 +10,13 @@ import { updateProfile } from 'firebase/auth';
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [sendEmailVerification, sending, emailError] = useSendEmailVerification(auth);
     const [updateProfile, updating, userUpdateError] = useUpdateProfile(auth);
     const [passWordError, setPasswordError] = useState('');
     const [user1] = useAuthState(auth);
     const [userImage, setUserImage] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
     let userError;
 
     const onSubmit = async (data) => {
@@ -47,13 +49,15 @@ const SignUp = () => {
 
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name, photoURL: photo });
+        await sendEmailVerification();
 
     };
     if (error) {
         userError = error?.message;
     }
-    if (user) {
-        navigate('/');
+    let from = location.state?.from?.pathname || "/";
+    if(user){
+        navigate(from, {replace:true});
     }
 
     console.log(userImage);

@@ -65,7 +65,7 @@ const Navbar = () => {
                                     </ul>
                                 </div>
                             </>:
-                            <Link className="btn btn-secondary" to='/signin'>Sign in</Link>
+                            <Link className="btn btn-primary" to='/signin'>Sign in</Link>
 
                     }
                     <label for="dashboard-drawer" tabIndex="0" className="btn btn-ghost lg:hidden">
