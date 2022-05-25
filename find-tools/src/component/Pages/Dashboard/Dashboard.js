@@ -13,6 +13,7 @@ const Dashboard = () => {
                 <div class="drawer-side border rounded-lg m-2">
                     <label for="dashboard-drawer" class="drawer-overlay"></label>
                     <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                        <li><Link className='border-b' to='/dashboard/myprofile'>My Profile</Link></li>
                         <li><Link className='border-b' to='/dashboard/'>Manage All Orders</Link></li>
                         <li><Link className='border-b' to='/dashboard/manageproducts'>Manage Products</Link></li>
                         <li><Link className='border-b' to='/dashboard/addproduct'>Add A Product</Link></li>
