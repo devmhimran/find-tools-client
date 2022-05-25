@@ -7,7 +7,6 @@ import './Navbar.css'
 
 const Navbar = () => {
     const [user] = useAuthState(auth);
-    console.log(user)
     const logout = () => {
         signOut(auth);
     };

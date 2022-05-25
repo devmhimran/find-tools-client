@@ -18,17 +18,18 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
     let userError;
+    const imageApi = '5b01dc41485f68cbd575874e6d5aeeed';
 
     const onSubmit = async (data) => {
         const email = data.email;
         const name = data.name;
         const password = data.password;
         const confirmPassword = data.confirmPassword;
-        // const photo = data.profileImage[0];
-        const photo = data.profileImage;
-        const imageApi = '5b01dc41485f68cbd575874e6d5aeeed';
+        // const photoURL = data.profileImage[0];
+        const photoURL = data.profileImage;
+        
         const formData = new FormData();
-        formData.append('image', photo);
+        formData.append('image', photoURL);
         if (password !== confirmPassword) {
             setPasswordError("Password doesn't matched");
         }
@@ -48,9 +49,9 @@ const SignUp = () => {
         //     })
 
         await createUserWithEmailAndPassword(email, password);
-        await updateProfile({ displayName: name, photoURL: photo });
+        await updateProfile({ displayName: name, photoURL: photoURL });
         await sendEmailVerification();
-
+        // console.log(photoURL);
     };
     if (error) {
         userError = error?.message;
@@ -60,8 +61,8 @@ const SignUp = () => {
         navigate(from, {replace:true});
     }
 
-    console.log(userImage);
     console.log(user1);
+    
     return (
         <div className='container mx-auto'>
             <div className="hero p-8 lg:p-20 rounded-2xl">

@@ -19,19 +19,21 @@ const SignIn = () => {
         const password = data.password;
         signInWithEmailAndPassword(email, password);
     }
-    if(loading || gLoading){
+    const handleGoogleLogin = () => {
+        signInWithGoogle();
+    }
+    if (loading || gLoading) {
         return <Loading></Loading>
     }
     if (error) {
         userError = error?.message;
     }
     let from = location.state?.from?.pathname || "/";
-    const handleGoogleLogin = () =>{
-        signInWithGoogle();
-    }
+
     if (user || gUser) {
         navigate(from, { replace: true });
     }
+
     return (
         <div className='container mx-auto'>
             <div className="card mx-auto mt-10 lg:mt-20 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -90,8 +92,8 @@ const SignIn = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className="form-control mt-6">
-                                <button onClick={handleGoogleLogin} className="btn bg-white text-black hover:bg-white hover:shadow-lg shadow-neutral-200"><span className='mr-2 text-2xl'><AiOutlineGoogle></AiOutlineGoogle></span> Google Sign In</button>
-                            </div>
+                        <button onClick={handleGoogleLogin} className="btn bg-white text-black hover:bg-white hover:shadow-lg shadow-neutral-200"><span className='mr-2 text-2xl'><AiOutlineGoogle></AiOutlineGoogle></span> Google Sign In</button>
+                    </div>
                     <div className="creat__account__Link mt-4 text-center">
                         <Link to='/signup' className="link link-primary no-underline font-medium">Create Account</Link>
                     </div>
