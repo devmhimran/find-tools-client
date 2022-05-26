@@ -20,7 +20,7 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then((result) => {
-                const productImage = result.data.image;
+                const productImage = result.data.image.url;
                 const product = {
                     productName: name,
                     productImage: productImage,
