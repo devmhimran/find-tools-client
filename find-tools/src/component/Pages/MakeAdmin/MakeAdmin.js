@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Toaster } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 import UserRow from './UserRow';
 
 const MakeAdmin = () => {
-    const { data: userData, isLoading, refetch } = useQuery('users', () => 
+    const { data: userData, isLoading, refetch } = useQuery('users', () =>
         fetch('http://localhost:5000/users',
-        // {
-        //     method: 'GET',
-        //     headers: {
-        //         'content-type': 'application/json',
-        //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        //     }
-        // }
+            // {
+            //     method: 'GET',
+            //     headers: {
+            //         'content-type': 'application/json',
+            //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            //     }
+            // }
         ).then(res => {
             console.log(res)
-           return res.json()})
+            return res.json()
+        })
     );
     if (isLoading) {
         return <Loading></Loading>
@@ -49,6 +51,12 @@ const MakeAdmin = () => {
 
                     </tbody>
                 </table>
+            </div>
+            <div className='z-50'>
+                <Toaster
+                    position="bottom-center"
+                    reverseOrder={true}
+                />
             </div>
         </div>
     );

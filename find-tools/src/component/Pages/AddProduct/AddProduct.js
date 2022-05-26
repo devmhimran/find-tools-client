@@ -48,7 +48,7 @@ const AddProduct = () => {
             })
 
         e.target.reset();
-        toast.success('Successfully Added!');
+        toast.success('Successfully Product Added!');
     }
     return (
         <div className='container'>
@@ -88,10 +88,10 @@ const AddProduct = () => {
                 </div>
             </div>
             <div className='z-50'>
-            <Toaster
-                position="top-center"
-                reverseOrder={true}
-            />
+                <Toaster
+                    position="bottom-center"
+                    reverseOrder={true}
+                />
             </div>
         </div>
     );
