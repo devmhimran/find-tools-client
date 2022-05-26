@@ -1,4 +1,5 @@
 import React from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddProduct = () => {
     const imageApi = 'ef367f576eca302d4916e3889c6e0cc6';
@@ -9,6 +10,7 @@ const AddProduct = () => {
         const photoURL = e.target.image.files[0];
         const shortDescription = e.target.shortDescription.value;
         const quantity = e.target.quantity.value;
+        const price = e.target.price.value;
         const formData = new FormData();
         formData.append('image', photoURL);
         const imgUrl = `https://api.imgbb.com/1/upload?key=${imageApi}`;
@@ -23,12 +25,26 @@ const AddProduct = () => {
                     productName: name,
                     productImage: productImage,
                     productDescription: shortDescription,
-                    productQuantity: quantity
+                    productQuantity: quantity,
+                    productprice: price
                 }
-
+                fetch('http://localhost:5000/products', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(product)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            toast.success('Successfully toasted!');
+                            e.target.reset();
+                        }
+                    })
                 console.log(productImage)
             })
-            console.log(photoURL)
+        console.log(photoURL)
     }
     return (
         <div className='container'>
@@ -58,11 +74,19 @@ const AddProduct = () => {
                             <input type="number" name='quantity' placeholder="Type here" className="input input-bordered w-full" required />
                         </div>
                         <div className='product-input my-5'>
+                            <p className='mb-3'>Product Price</p>
+                            <input type="number" name='price' placeholder="Type here" className="input input-bordered w-full" required />
+                        </div>
+                        <div className='product-input my-5'>
                             <input type="submit" className="btn btn-primary" value='Add' required />
                         </div>
                     </form>
                 </div>
             </div>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
         </div>
     );
 };
