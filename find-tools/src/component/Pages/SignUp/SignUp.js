@@ -62,7 +62,7 @@ const SignUp = () => {
         userError = error?.message;
     }
     let from = location.state?.from?.pathname || "/";
-    if(user || gUser){
+    if(token){
         navigate(from, {replace:true});
     }
 

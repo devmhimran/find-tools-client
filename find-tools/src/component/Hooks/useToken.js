@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 
 
 
-const useToken = user =>{
+const useToken = user => {
     const [token, setToken] = useState('');
-    useEffect(()=>{
+    useEffect(() => {
         const email = user?.user?.email;
-        const currentUser = {email:email};
+        const currentUser = { email: email };
         console.log(user?.user?.email)
-        if(email){
+        if (email) {
             fetch(`http://localhost:5000/user/${email}`, {
                 method: 'PUT',
                 headers: {
@@ -16,11 +16,15 @@ const useToken = user =>{
                 },
                 body: JSON.stringify(currentUser)
             })
-            .then(res => res.json())
-            .then(data => console.log(data));
+                .then(res => res.json())
+                .then(data => {
+                    const accessToken = data.token;
+                    localStorage.setItem('accessToken', accessToken);
+                    setToken(accessToken);
+                });
         }
-    },[user])
-    
+    }, [user])
+
 
     return [token];
 }
