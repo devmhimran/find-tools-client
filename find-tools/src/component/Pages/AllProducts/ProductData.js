@@ -13,12 +13,13 @@ const ProductData = ({products}) => {
         //         {productPrice}
         //     </div>
         // </div>
-        <div class="card w-full bg-base-100 shadow-xl">
-        <div class="card-body">
+        <div className="card w-full bg-base-100 shadow-xl">
+        <div className="card-body">
           <img src={productImage} alt="" />
           <h2 className='text-xl font-semibold'>{productName}</h2>
           <p className='text-base my-3'>{productDescription.slice(0, 45)}[...]</p>
-            <button class="btn btn-primary">Buy Now</button>
+          <p className='text-base my-3'>$ {productPrice}</p>
+            <button className="btn btn-primary">Buy Now</button>
         </div>
       </div>
     );

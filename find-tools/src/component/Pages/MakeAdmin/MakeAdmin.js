@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
+import UserRow from './UserRow';
 
 const MakeAdmin = () => {
-    const [usersData, setUsersData] = useState([]);
-    const [user] = useAuthState(auth);
-    useEffect(()=>{
-        fetch('http://localhost:5000/users')
-        .then(res => res.json())
-        .then(data => setUsersData(data))
-    },[user]);
+    const { data: userData, isLoading, refetch } = useQuery('users', () => 
+        fetch('http://localhost:5000/users',
+        // {
+        //     method: 'GET',
+        //     headers: {
+        //         'content-type': 'application/json',
+        //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        //     }
+        // }
+        ).then(res => {
+            console.log(res)
+           return res.json()})
+    );
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    // const [usersData, setUsersData] = useState([]);
+    // const [user] = useAuthState(auth);
+    // useEffect(()=>{
+    //     fetch('http://localhost:5000/users')
+    //     .then(res => res.json())
+    //     .then(data => setUsersData(data))
+    // },[user]);
     return (
         <div className='container'>
             <h1>All users</h1>
@@ -24,16 +43,10 @@ const MakeAdmin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    
                         {
-                            usersData.map((data, index) => 
-                                <tr className="hover" key={data._id}>
-                                <th>{index+1}</th>
-                                <th>{data.email}</th>
-                                </tr>
-                            )
+                            userData.map((user, index) => <UserRow key={user._id} userData={user} refetch={refetch} index={index}></UserRow>)
                         }
-                        
+
                     </tbody>
                 </table>
             </div>

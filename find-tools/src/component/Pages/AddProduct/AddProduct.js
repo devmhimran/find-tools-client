@@ -26,25 +26,29 @@ const AddProduct = () => {
                     productImage: productImage,
                     productDescription: shortDescription,
                     productQuantity: quantity,
-                    productprice: price
+                    productPrice: price
                 }
                 fetch('http://localhost:5000/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
                     },
                     body: JSON.stringify(product)
                 })
                     .then(res => res.json())
                     .then(data => {
+
                         if (data.insertedId) {
-                            toast.success('Successfully toasted!');
-                            e.target.reset();
+                            console.log(data)
+                            // toast.success('Successfully toasted!');
                         }
                     })
                 console.log(productImage)
             })
-        console.log(photoURL)
+
+        e.target.reset();
+        toast.success('Successfully Added!');
     }
     return (
         <div className='container'>
@@ -83,10 +87,12 @@ const AddProduct = () => {
                     </form>
                 </div>
             </div>
+            <div className='z-50'>
             <Toaster
                 position="top-center"
-                reverseOrder={false}
+                reverseOrder={true}
             />
+            </div>
         </div>
     );
 };

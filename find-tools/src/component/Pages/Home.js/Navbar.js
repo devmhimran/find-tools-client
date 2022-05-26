@@ -9,7 +9,9 @@ const Navbar = () => {
     const [user] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken');
     };
+    console.log(user?.photoURL)
     const navMenu =
         <>
             <li><Link to='/'>Home</Link></li>
