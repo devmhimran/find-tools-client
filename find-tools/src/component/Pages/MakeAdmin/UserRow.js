@@ -29,10 +29,10 @@ const UserRow = ({ userData, index, refetch }) => {
             <th>{email}</th>
             <th>
                 {
-                    role ? '' :<div onClick={handleMakeAdmin} className="btn btn-primary">Make Admin</div> 
+                    role ? '' :<div onClick={handleMakeAdmin} className="btn btn-primary btn-sm">Make Admin</div> 
                 }
                 </th>
-            <th><div className="btn btn-primary">Delete User</div></th>
+            <th><div className="btn btn-primary  btn-sm">Delete User</div></th>
         </tr>
     );
 };
