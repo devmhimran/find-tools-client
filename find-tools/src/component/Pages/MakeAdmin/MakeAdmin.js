@@ -17,7 +17,6 @@ const MakeAdmin = () => {
             //     }
             // }
         ).then(res => {
-            console.log(res)
             return res.json()
         })
     );
