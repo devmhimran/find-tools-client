@@ -5,12 +5,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import Loading from '../Loading/Loading';
+import useToken from '../../Hooks/useToken';
 
 const SignIn = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [sendEmailVerification, sending, emailError] = useSendEmailVerification(auth);
+    const [token] = useToken(user || gUser);
     const navigate = useNavigate();
     const location = useLocation();
     let userError;
@@ -30,8 +32,8 @@ const SignIn = () => {
     }
     let from = location.state?.from?.pathname || "/";
 
-    if (user || gUser) {
-        navigate(from, { replace: true });
+    if(token){
+        navigate(from, {replace:true});
     }
 
     return (
