@@ -57,7 +57,7 @@ const Navbar = () => {
                                             </p>
                                         </li>
                                         <li>
-                                            <Link to='/' className="justify-between">
+                                            <Link to='/dashboard/' className="justify-between">
                                                 Profile
                                             </Link>
                                         </li>
