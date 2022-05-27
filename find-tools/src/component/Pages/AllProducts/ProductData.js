@@ -1,7 +1,11 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 const ProductData = ({ products }) => {
-  const { productName, productImage, productDescription, productQuantity, productPrice } = products;
+  const { _id,productName, productImage, productDescription, productQuantity, productPrice } = products;
+  const handleSingleProduct =(id)=>{
+    Navigate(`product/${id}`);
+  }
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <div className="card-body">
@@ -12,7 +16,7 @@ const ProductData = ({ products }) => {
           <p className='text-2xl mb-2 font-semibold'>${productPrice}</p>
           <p className='text-lg mb-2 font-semibold text-right'>{productQuantity > 0 ? 'Available' : 'Not Available'}</p>
         </div>
-        <button className="btn btn-primary">Buy Now</button>
+        <button onClick={()=>handleSingleProduct(_id)} className="btn btn-primary">Buy Now</button>
       </div>
     </div>
   );

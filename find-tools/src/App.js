@@ -18,6 +18,7 @@ import MyProfile from './component/Pages/MyProfile/MyProfile';
 import AddaReview from './component/Pages/AddaReview/AddaReview';
 import MyOrders from './component/Pages/MyOrders/MyOrders';
 import RequireAdmin from './component/Pages/RequireAdmin/RequireAdmin';
+import SingleProduct from './component/Pages/AllProducts/SingleProduct';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/loading' element={<Loading></Loading>}></Route>
+        <Route path='/product/:id' element={<SingleProduct></SingleProduct>}></Route>
         <Route path='dashboard' element={
           <RequireAuth>
             <Dashboard></Dashboard>
