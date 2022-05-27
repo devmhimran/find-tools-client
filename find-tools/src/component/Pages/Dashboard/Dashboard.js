@@ -3,7 +3,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdminCheck from '../../Hooks/useAdminCheck';
-import useUser from '../../Hooks/useUser';
 
 const Dashboard = () => {
     const [user] = useAuthState(auth);
@@ -19,10 +18,12 @@ const Dashboard = () => {
                 <div className="drawer-side border rounded-lg m-2">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                        <li><Link className='border-b' to='/dashboard/'>My Profile</Link></li>
+                        <li><Link className='border-b' to='/dashboard/myorders'>My Orders</Link></li>
+                        <li><Link className='border-b' to='/dashboard/addareview'>Add a review</Link></li>
                         {
                             admin &&
                             <>
-                                <li><Link className='border-b' to='/dashboard/myprofile'>My Profile</Link></li>
                                 <li><Link className='border-b' to='/dashboard/'>Manage All Orders</Link></li>
                                 <li><Link className='border-b' to='/dashboard/manageproducts'>Manage Products</Link></li>
                                 <li><Link className='border-b' to='/dashboard/addproduct'>Add A Product</Link></li>

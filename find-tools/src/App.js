@@ -14,6 +14,9 @@ import Loading from './component/Pages/Loading/Loading';
 import RequireAuth from './component/Pages/RequireAuth/RequireAuth';
 import AddProduct from './component/Pages/AddProduct/AddProduct';
 import MakeAdmin from './component/Pages/MakeAdmin/MakeAdmin';
+import MyProfile from './component/Pages/MyProfile/MyProfile';
+import AddaReview from './component/Pages/AddaReview/AddaReview';
+import MyOrders from './component/Pages/MyOrders/MyOrders';
 
 function App() {
   return (
@@ -31,7 +34,10 @@ function App() {
             <Dashboard></Dashboard>
           </RequireAuth>
         }>
-          <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
+          <Route path='addareview' element={<AddaReview></AddaReview>}></Route>
+          <Route path='manageallorders' element={<ManageAllOrders></ManageAllOrders>}></Route>
           <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
           <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
           <Route path='makeadmin' element={<MakeAdmin></MakeAdmin>}></Route>
