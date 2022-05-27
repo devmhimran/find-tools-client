@@ -11,7 +11,6 @@ const Navbar = () => {
         signOut(auth);
         localStorage.removeItem('accessToken');
     };
-    console.log(user?.photoURL)
     const navMenu =
         <>
             <li><Link to='/'>Home</Link></li>
