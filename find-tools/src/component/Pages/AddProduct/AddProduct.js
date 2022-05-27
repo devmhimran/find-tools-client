@@ -44,7 +44,6 @@ const AddProduct = () => {
                             // toast.success('Successfully toasted!');
                         }
                     })
-                console.log(productImage)
             })
 
         e.target.reset();

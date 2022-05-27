@@ -5,7 +5,6 @@ const useAdminCheck = (user) => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            console.log(email)
             fetch(`http://localhost:5000/admin/${email}`, {
                 method: 'GET',
                 headers: {
@@ -16,7 +15,6 @@ const useAdminCheck = (user) => {
                 .then(res => res.json())
                 .then(data => {
                     setAdmin(data.admin);
-                    console.log(data.admin)
                 })
         }
     }, [user]);

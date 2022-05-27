@@ -8,7 +8,6 @@ const AllProducts = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
-    console.log(products)
     return (
         <div className="container mx-auto">
             <div className="product__data py-16 mx-5 lg:mx-10 lg:py-20">

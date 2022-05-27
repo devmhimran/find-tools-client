@@ -7,7 +7,6 @@ import useAdminCheck from '../../Hooks/useAdminCheck';
 const Dashboard = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdminCheck(user);
-    console.log(admin)
     return (
         <div className="container mx-auto">
             <div className="drawer drawer-mobile">

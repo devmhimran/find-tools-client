@@ -2,7 +2,6 @@ import React from 'react';
 
 const ProductData = ({products}) => {
     const {productName, productImage, productDescription, productQuantity, productPrice} = products;
-    console.log(products.length)
     return (
         // <div className="card drop-shadow-lg rounded-xl">
         //     <div className="card-body">

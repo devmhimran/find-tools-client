@@ -53,7 +53,7 @@ const SignUp = () => {
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name, photoURL: photoURL });
         await sendEmailVerification();
-        // console.log(photoURL);
+
     };
     const handleGoogleLogin = () => {
         signInWithGoogle();
@@ -66,8 +66,6 @@ const SignUp = () => {
         navigate(from, {replace:true});
     }
 
-    console.log(user || gUser);
-    
     return (
         <div className='container mx-auto'>
             <div className="hero p-8 lg:p-20 rounded-2xl">
