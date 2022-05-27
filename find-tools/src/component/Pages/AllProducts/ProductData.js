@@ -3,15 +3,6 @@ import React from 'react';
 const ProductData = ({ products }) => {
   const { productName, productImage, productDescription, productQuantity, productPrice } = products;
   return (
-    // <div className="card drop-shadow-lg rounded-xl">
-    //     <div className="card-body">
-    //         {productName}
-    //         <img src={productImage} alt="" />
-    //         {productDescription}
-    //         {productQuantity}
-    //         {productPrice}
-    //     </div>
-    // </div>
     <div className="card w-full bg-base-100 shadow-xl">
       <div className="card-body">
         <img src={productImage} alt="" />
