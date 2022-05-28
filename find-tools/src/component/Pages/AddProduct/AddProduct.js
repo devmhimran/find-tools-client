@@ -10,6 +10,7 @@ const AddProduct = () => {
         const photoURL = e.target.image.files[0];
         const shortDescription = e.target.shortDescription.value;
         const quantity = e.target.quantity.value;
+        const minimumQuantity = e.target.minimumQuantity.value;
         const price = e.target.price.value;
         const formData = new FormData();
         formData.append('image', photoURL);
@@ -26,6 +27,7 @@ const AddProduct = () => {
                     productImage: productImage,
                     productDescription: shortDescription,
                     productQuantity: quantity,
+                    productMinimumQuantity:minimumQuantity,
                     productPrice: price
                 }
                 fetch('http://localhost:5000/products', {
@@ -75,6 +77,10 @@ const AddProduct = () => {
                         <div className='product-input my-5'>
                             <p className='mb-3'>Product Quantity</p>
                             <input type="number" name='quantity' placeholder="Type here" className="input input-bordered w-full" required />
+                        </div>
+                        <div className='product-input my-5'>
+                            <p className='mb-3'>Minimum Quantity</p>
+                            <input type="number" name='minimumQuantity' placeholder="Type here" className="input input-bordered w-full" required />
                         </div>
                         <div className='product-input my-5'>
                             <p className='mb-3'>Product Price</p>
