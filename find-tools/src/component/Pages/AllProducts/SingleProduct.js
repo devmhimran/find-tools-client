@@ -27,7 +27,7 @@ const SingleProduct = () => {
         const address = e.target.address.value;
         const number = e.target.number.value;
         const quantity = e.target.quantity.value;
-        const status = 'Not Paid';
+        const status = 'unpaid';
 
         const quantityParse = parseInt(quantity);
         const minimumQuantity = parseInt(productMinimumQuantity);
