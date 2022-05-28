@@ -1,10 +1,11 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const ProductData = ({ products }) => {
+  const navigate = useNavigate();
   const { _id,productName, productImage, productDescription, productQuantity, productPrice } = products;
   const handleSingleProduct =(id)=>{
-    Navigate(`product/${id}`);
+    navigate(`/product/${id}`);
   }
   return (
     <div className="card w-full bg-base-100 shadow-xl">
