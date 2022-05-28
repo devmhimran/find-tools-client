@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast, { Toaster } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const SingleProduct = () => {
     const [user] = useAuthState(auth);
     const [product, setProduct] = useState([]);
+    const navigate = useNavigate();
     const { _id, productImage, productName, productDescription, productQuantity, productPrice, productMinimumQuantity } = product;
     const { id } = useParams();
     useEffect(() => {
@@ -45,7 +46,7 @@ const SingleProduct = () => {
             alert('You crossed quantity limit');
         }
         else {
-            const isProceed = window.confirm('Are You Sure Update Data?');
+            const isProceed = window.confirm('Are you wanted to place order?');
             if (isProceed) {
                 const order = {
                     productId: _id,
@@ -67,8 +68,30 @@ const SingleProduct = () => {
                     .then(res => res.json())
                     .then(data => {
                     })
-                e.target.reset();
-                toast.success('Successfully Purchased!')
+                
+
+                const updatedQuantity = productQuantity - quantityParse;
+                const totalUpdatedQuantity = {productQuantity: updatedQuantity}
+                fetch(`http://localhost:5000/product/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "content-type": "application/json",
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(totalUpdatedQuantity)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                            
+                       if(isProceed){
+                        
+                        window.location.reload();
+                       }
+                        console.log(data);
+                    })
+
+                    e.target.reset();
+                toast.success('Thank you for purchased');
             }
         }
 
