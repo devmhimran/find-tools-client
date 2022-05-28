@@ -20,6 +20,7 @@ import MyOrders from './component/Pages/MyOrders/MyOrders';
 import RequireAdmin from './component/Pages/RequireAdmin/RequireAdmin';
 import SingleProduct from './component/Pages/AllProducts/SingleProduct';
 import OrderRow from './component/Pages/MyOrders/OrderRow';
+import MyPortolio from './component/Pages/MyPortfolio/MyPortolio';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
+        <Route path='/myportfolio' element={<MyPortolio></MyPortolio>}></Route>
         <Route path='/allproducts' element={<AllProducts></AllProducts>}></Route>
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
