@@ -39,8 +39,8 @@ const MyOrders = () => {
                         <tr>
                             <th></th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>

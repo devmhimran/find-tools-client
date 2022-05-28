@@ -55,6 +55,7 @@ const SingleProduct = () => {
                     address: address,
                     number: number,
                     quantity: quantity,
+                    productName: productName,
                     status: status
                 }
                 fetch(`http://localhost:5000/order`, {

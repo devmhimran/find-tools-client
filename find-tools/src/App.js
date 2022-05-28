@@ -19,6 +19,7 @@ import AddaReview from './component/Pages/AddaReview/AddaReview';
 import MyOrders from './component/Pages/MyOrders/MyOrders';
 import RequireAdmin from './component/Pages/RequireAdmin/RequireAdmin';
 import SingleProduct from './component/Pages/AllProducts/SingleProduct';
+import OrderRow from './component/Pages/MyOrders/OrderRow';
 
 function App() {
   return (
@@ -31,7 +32,10 @@ function App() {
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/loading' element={<Loading></Loading>}></Route>
-        <Route path='/product/:id' element={<SingleProduct></SingleProduct>}></Route>
+        <Route path='/product/:id' element={<RequireAuth>
+          <SingleProduct></SingleProduct>
+        </RequireAuth>
+        }></Route>
         {/* <Route path='/productUpdate/:productId' element={<SingleProduct></SingleProduct>}></Route>
         <Route path='/order/:id' element={<SingleProduct></SingleProduct>}></Route> */}
         <Route path='dashboard' element={
@@ -46,7 +50,7 @@ function App() {
           <Route path='manageproducts' element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
           <Route path='addproduct' element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
           <Route path='makeadmin' element={<RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin>}></Route>
-          </Route>
+        </Route>
         <Route path='*' element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </div>
