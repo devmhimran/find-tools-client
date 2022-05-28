@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast, { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const SingleProduct = () => {
     const [user] = useAuthState(auth);
     const [product, setProduct] = useState([]);
-    const { _id, productImage, productName, productDescription, productQuantity, productPrice, productMinimumQuantity    } = product;
+    const { _id, productImage, productName, productDescription, productQuantity, productPrice, productMinimumQuantity } = product;
     const { id } = useParams();
     useEffect(() => {
         fetch(`http://localhost:5000/product/${id}`)
@@ -18,10 +19,10 @@ const SingleProduct = () => {
             e.preventDefault();
         }
     };
-    const handlePurchase = (e) =>{
+    const handlePurchase = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
-        const email = e.target.name.value;
+        const email = e.target.email.value;
         const address = e.target.address.value;
         const number = e.target.number.value;
         const quantity = e.target.quantity.value;
@@ -31,21 +32,21 @@ const SingleProduct = () => {
         const minimumQuantity = parseInt(productMinimumQuantity);
         const totalQuantity = parseInt(productQuantity);
 
-        console.log(quantityParse,minimumQuantity, totalQuantity )
+        console.log(quantityParse, minimumQuantity, totalQuantity)
 
-        if(quantity <= 0){
+        if (quantity <= 0) {
             alert('Enter Some quantity');
 
-        }else if( quantityParse < minimumQuantity){
+        } else if (quantityParse < minimumQuantity) {
             alert('Please enter minimum quantity');
 
         }
-        else if( quantityParse > totalQuantity){
+        else if (quantityParse > totalQuantity) {
             alert('You crossed quantity limit');
         }
-        else{
+        else {
             const isProceed = window.confirm('Are You Sure Update Data?');
-            if(isProceed){
+            if (isProceed) {
                 const order = {
                     productId: _id,
                     name: name,
@@ -55,13 +56,22 @@ const SingleProduct = () => {
                     quantity: quantity,
                     status: status
                 }
-                console.log(order)
+                fetch(`http://localhost:5000/order`, {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(order)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                    })
+                e.target.reset();
+                toast.success('Successfully Purchased!')
             }
-            
         }
 
-        
-        
     }
     return (
         <div className='container mx-auto bg-violet-100 my-11 rounded-3xl p-11'>
@@ -105,7 +115,7 @@ const SingleProduct = () => {
                                     <div className="checkout__input my-2">
                                         <p className='text-lg font-bold mb-3'>Product Quantity</p>
                                         <input type="number" placeholder="Product Quantity" className="input input-bordered input-primary w-full mb-2"
-                                            name="quantity" min="0" onKeyPress={preventMinus}/>
+                                            name="quantity" min="0" onKeyPress={preventMinus} />
                                     </div>
                                     <div className="checkout__input my-2">
                                         <input type='submit' className="btn btn-primary" value='Purchase' />
@@ -116,6 +126,10 @@ const SingleProduct = () => {
                     </div>
                 </div>
             </div>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
         </div>
     );
 };

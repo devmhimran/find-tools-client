@@ -32,7 +32,8 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/loading' element={<Loading></Loading>}></Route>
         <Route path='/product/:id' element={<SingleProduct></SingleProduct>}></Route>
-        <Route path='/productUpdate/:productId' element={<SingleProduct></SingleProduct>}></Route>
+        {/* <Route path='/productUpdate/:productId' element={<SingleProduct></SingleProduct>}></Route>
+        <Route path='/order/:id' element={<SingleProduct></SingleProduct>}></Route> */}
         <Route path='dashboard' element={
           <RequireAuth>
             <Dashboard></Dashboard>
