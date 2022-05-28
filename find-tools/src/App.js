@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blog from './component/Pages/Blog/Blog';
 import Home from './component/Pages/Home.js/Home';
-import Navbar from './component/Pages/Home.js/Navbar';
+// import Navbar from './component/Pages/Navbar';
 import SignIn from './component/Pages/SignIn/SignIn';
 import SignUp from './component/Pages/SignUp/SignUp';
 import AllProducts from './component/Pages/AllProducts/AllProducts';
@@ -21,11 +21,13 @@ import RequireAdmin from './component/Pages/RequireAdmin/RequireAdmin';
 import SingleProduct from './component/Pages/AllProducts/SingleProduct';
 import OrderRow from './component/Pages/MyOrders/OrderRow';
 import MyPortolio from './component/Pages/MyPortfolio/MyPortolio';
+import Footer from './component/Pages/Home.js/Footer';
+import Navbar from './component/Pages/Navbar/Navbar';
 
 function App() {
   return (
     <div className="">
-      <Navbar></Navbar>
+     <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
@@ -55,6 +57,7 @@ function App() {
         </Route>
         <Route path='*' element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

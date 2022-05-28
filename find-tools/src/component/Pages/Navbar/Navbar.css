@@ -1,0 +1,3 @@
+.navbar, .navbar-end, .navbar-start, .dropdown{
+    z-index: 9999 !important;
+}
