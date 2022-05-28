@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 
 const AddaReview = () => {
@@ -15,12 +16,19 @@ const AddaReview = () => {
                             <input type="text" defaultValue={displayName} placeholder="Type here" className="input input-bordered w-full " disabled required />
                         </div>
                         <div className="inputForm my-3">
-                            <p className='mb-2 font-medium'>Name</p>
+                            <p className='mb-2 font-medium'>Email</p>
                             <input type="text" defaultValue={email} placeholder="Type here" className="input input-bordered w-full " disabled required />
                         </div>
                         <div className="inputForm my-3">
-                            <p className='mb-2 font-medium'>Name</p>
-                            <input type="number" placeholder="Rating" className="input input-bordered w-full " required />
+                            <p className='mb-2 font-medium'>Rating</p>
+                            <input type="number" name='rating' placeholder="Rating" className="input input-bordered w-full " required />
+                        </div>
+                        <div className="inputForm my-3">
+                            <p className='mb-2 font-medium'>Description</p>
+                            <textarea name='description' className="textarea textarea-bordered w-full h-28" placeholder="Description"></textarea>
+                        </div>
+                        <div className="inputForm my-3">
+                            <div className="btn btn-primary" >Add Rating</div>
                         </div>
                     </form>
                 </div>
