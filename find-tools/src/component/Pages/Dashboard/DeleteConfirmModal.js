@@ -1,8 +1,25 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
-const DeleteConfirmModal = ({cancelOrder, refetch}) => {
+const DeleteConfirmModal = ({cancelOrder, refetch, setCancelOrder}) => {
     const {_id, productName, productPrice, quantity} = cancelOrder;
     const total = productPrice * quantity;
+    const handleCancel = () =>{
+        fetch(`http://localhost:5000/order/${_id}` , {
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.deletedCount) {
+                toast.success('Successfully Cancelled!')
+                setCancelOrder(null);
+                refetch();
+            }
+        })
+    }
     return (
         <div className='z-50'>
             
@@ -15,7 +32,7 @@ const DeleteConfirmModal = ({cancelOrder, refetch}) => {
                     <p className='capitalize'>quantity: {quantity}</p>
                     <p className='capitalize'>Total Price: ${total}</p>
                     <div class="modal-action">
-                        <label htmlFor="delete-confirm-modal" class="btn  btn-error">Confirm</label>
+                        <label onClick={handleCancel} htmlFor="delete-confirm-modal" class="btn  btn-error">Confirm</label>
                     </div>
                 </div>
             </div>

@@ -52,7 +52,7 @@ const MyOrders = () => {
                     </tbody>
                 </table>
             </div>
-            { cancelOrder && <DeleteConfirmModal cancelOrder={cancelOrder} refetch={refetch}></DeleteConfirmModal> }
+            { cancelOrder && <DeleteConfirmModal cancelOrder={cancelOrder}  setCancelOrder={setCancelOrder} refetch={refetch}></DeleteConfirmModal> }
         </div>
     );
 };
