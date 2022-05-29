@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blog from './component/Pages/Blog/Blog';
-import Home from './component/Pages/Home.js/Home';
+import Home from './component/Pages/Home/Home';
 // import Navbar from './component/Pages/Navbar';
 import SignIn from './component/Pages/SignIn/SignIn';
 import SignUp from './component/Pages/SignUp/SignUp';
@@ -21,8 +21,9 @@ import RequireAdmin from './component/Pages/RequireAdmin/RequireAdmin';
 import SingleProduct from './component/Pages/AllProducts/SingleProduct';
 import OrderRow from './component/Pages/MyOrders/OrderRow';
 import MyPortolio from './component/Pages/MyPortfolio/MyPortolio';
-import Footer from './component/Pages/Home.js/Footer';
+import Footer from './component/Pages/Home/Footer';
 import Navbar from './component/Pages/Navbar/Navbar';
+import AllReviews from './component/Pages/AllReviews/AllReviews';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/loading' element={<Loading></Loading>}></Route>
+        <Route path='/allreviews' element={<AllReviews></AllReviews>}></Route>
         <Route path='/product/:id' element={<RequireAuth>
           <SingleProduct></SingleProduct>
         </RequireAuth>
