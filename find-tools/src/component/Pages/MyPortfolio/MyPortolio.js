@@ -4,8 +4,13 @@ import { FaPhp, FaBootstrap, FaWordpressSimple, FaElementor } from 'react-icons/
 import { GrHtml5 } from 'react-icons/gr';
 import { DiCss3, DiReact } from 'react-icons/di';
 import { SiJavascript } from 'react-icons/si';
+import { Link, useNavigate } from 'react-router-dom';
+import project1 from '../../../Assets/project-1.png'
+import project2 from '../../../Assets/project-2.png'
+import project3 from '../../../Assets/project-3.png'
 
 const MyPortolio = () => {
+    const navigate = useNavigate();
     return (
         <div className='container mx-auto'>
             <div className="hero h-5/6 bg-black py-10 lg:py-20 px-4 lg:px-28 my-10 rounded-3xl">
@@ -60,6 +65,38 @@ const MyPortolio = () => {
                             <p class="py-6">I've successfully complete Bsc. in CSE from Bangladesh University of Business and Technology (BUBT).
                                 Since 2018-2022
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="project  py-28">
+            <h1 className='text-2xl lg:text-5xl font-bold text-center'>My Projects</h1>
+                <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-10">
+                    <div className="project__card">
+                        <div className="card shadow-2xl ">
+                            <div className="card-body">
+                                <img className='border rounded-lg' src={project1} alt="" />
+                                <h1 className='text-2xl font-bold text-center my-5'>Grocery Shop</h1>
+                                <a className='btn btn-primary' href='https://grocery-shop-4df4d.web.app/'>visit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="project__card">
+                        <div className="card shadow-2xl ">
+                            <div className="card-body">
+                                <img className='border rounded-lg' src={project2} alt="" />
+                                <h1 className='text-2xl font-bold text-center my-5'>Wedding Ultrashots</h1>
+                                <a className='btn btn-primary' href='https://wedding-ultra-shots.web.app/'>visit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="project__card">
+                        <div className="card shadow-2xl ">
+                            <div className="card-body">
+                                <img className='border rounded-lg' src={project3} alt="" />
+                                <h1 className='text-2xl font-bold text-center my-5'>Hero Headphone</h1>
+                                <a className='btn btn-primary' href="https://hero-headphone.netlify.app/"> visit</a>
+                            </div>
                         </div>
                     </div>
                 </div>
