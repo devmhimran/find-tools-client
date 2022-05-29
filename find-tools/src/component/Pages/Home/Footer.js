@@ -6,7 +6,7 @@ const Footer = () => {
     const date = new Date();
     const fullYear = date.getFullYear();
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content  rounded-2xl mx-auto container">
+        <footer className="footer p-10 bg-base-200 text-base-content  rounded-2xl mx-auto container mt-10">
             <div>
                 <Link to='/' className="w-1/4"><img src={logo} alt="" /></Link>
                 <p>We are here for you a great deal</p>

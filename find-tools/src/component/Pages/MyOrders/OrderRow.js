@@ -16,7 +16,7 @@ const OrderRow = ({ data, index, refetch }) => {
             <th>{index + 1}</th>
             <td>{productName}</td>
             <td>{quantity}</td>
-            { status === 'paid' ?  'Paid':  <>
+            { status === 'paid' ?  <><td> <small  className='bg-green-400 p-4 rounded text-white'> paid</small></td></>:  <>
             <td><button  className='btn btn-primary' onClick={()=> handlePay( _id)}>Pay</button></td>
             </>}
             <td><button className='btn btn-primary'>Cancel</button></td>

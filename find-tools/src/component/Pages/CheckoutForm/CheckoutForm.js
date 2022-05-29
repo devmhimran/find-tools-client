@@ -7,8 +7,10 @@ const CheckoutForm = ({ order }) => {
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const [success, setSuccess] = useState('');
+    const [spinner, setSpinner] = useState(false);
+    const [transactionId, setTransactionId] = useState('');
 
-    const { productPrice, quantity, name, email } = order;
+    const { _id, productPrice, quantity, name, email } = order;
     const price = productPrice * quantity;
 
     useEffect(() => {
@@ -53,6 +55,7 @@ const CheckoutForm = ({ order }) => {
             setCardError('');
         }
 
+        setSpinner(true);
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -65,14 +68,33 @@ const CheckoutForm = ({ order }) => {
                 },
             },
         );
-       if(intentError){
-        setCardError(intentError?.message);
-        setSuccess('');
-       }else{
-        setCardError('');
-        console.log(paymentIntent)
-        setSuccess('Congrats! Your is completed')
-       }
+        if (intentError) {
+            setCardError(intentError?.message);
+            setSuccess('');
+            setSpinner(false);
+        } else {
+            setCardError('');
+            // console.log(paymentIntent)
+            setTransactionId(paymentIntent.id)
+            setSuccess('Congrats! Your is completed');
+            const payment = {
+                order: _id,
+                transactionId: paymentIntent.id,
+
+            }
+            fetch(`http://localhost:5000/order/${_id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            }).then(res=> res.json())
+            .then(data =>{
+                setSpinner(false);
+                console.log(data)
+            })
+        }
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -92,8 +114,18 @@ const CheckoutForm = ({ order }) => {
                     },
                 }}
             />
-            <small className='text-red-500 '>{cardError}</small>
-            <small className='text-green-500 '>{success}</small>
+            {
+                cardError && <small className='text-red-500 '>{cardError}</small>
+            }
+            {
+                success && 
+                <div className='mt-10'>
+                    <small className='text-green-500 '>{success}</small>
+                    <div>
+                    <small className='text-orange-500 text-base font-semibold'>Your transaction id is: {transactionId}</small>
+                    </div>
+                </div>
+            }
             <div>
                 <button className='btn btn-primary mt-10' type="submit" disabled={!stripe || !clientSecret}>
                     Order
