@@ -14,7 +14,7 @@ const MyOrders = () => {
     //     .then(data => setOrders(data))
     // },[]);
 
-    const { data: userOrder, isLoading, refetch } = useQuery('orders', () =>
+    const { data: userOrder, isLoading, refetch } = useQuery('myOrders', () =>
         fetch(`http://localhost:5000/orders?email=${user.email}`,
             {
                 method: 'GET',
