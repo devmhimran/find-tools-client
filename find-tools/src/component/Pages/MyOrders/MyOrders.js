@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
+import DeleteConfirmModal from '../Dashboard/DeleteConfirmModal';
 import Loading from '../Loading/Loading';
 import OrderRow from './OrderRow';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
+    const [cancelOrder, setCancelOrder] = useState(null);
     // const [orders, setOrders] = useState([]);
     // useEffect(()=>{
     //     fetch(`http://localhost:5000/orders?email=${user.email}`)
@@ -45,11 +47,12 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            userOrder.map((data, index) => <OrderRow key={data._id} data={data} index={index} refetch={refetch}></OrderRow>)
+                            userOrder.map((data, index) => <OrderRow key={data._id} data={data} index={index} refetch={refetch} setCancelOrder={setCancelOrder}></OrderRow>)
                         }
                     </tbody>
                 </table>
             </div>
+            { cancelOrder && <DeleteConfirmModal cancelOrder={cancelOrder} refetch={refetch}></DeleteConfirmModal> }
         </div>
     );
 };
