@@ -118,7 +118,7 @@ const SingleProduct = () => {
                     <div className="product__purchase">
                         <div className="card drop-shadow-xl rounded-3xl p-5 bg-white w-10/12 ml-auto">
                             <div className="card-body">
-                                <h1 className='text-3xl font-bold mb-4'>Checkout</h1>
+                                <h1 className='text-3xl font-bold mb-4'>Purchase</h1>
                                 <form onSubmit={handlePurchase}>
                                     <div className="checkout__input my-2">
                                         <p className='text-lg font-bold mb-3'>Name</p>
