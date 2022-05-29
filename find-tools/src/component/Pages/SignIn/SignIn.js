@@ -27,7 +27,7 @@ const SignIn = () => {
     if (loading || gLoading) {
         return <Loading></Loading>
     }
-    if (error) {
+    if (error || gError) {
         userError = error?.message;
     }
     let from = location.state?.from?.pathname || "/";
