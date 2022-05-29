@@ -6,7 +6,7 @@ const ReviewData = ({ reviews }) => {
     const { name, email, photo, rating, description } = reviews;
     return (
         <div className="review__card">
-            <div className="card w-full bg-base-100 shadow-xl">
+            <div className="card w-full bg-base-100 border">
                 <div className="card-body">
                     <div className="rating__header flex justify-between">
                         <div className="profile">

@@ -24,6 +24,7 @@ import MyPortolio from './component/Pages/MyPortfolio/MyPortolio';
 import Footer from './component/Pages/Home/Footer';
 import Navbar from './component/Pages/Navbar/Navbar';
 import AllReviews from './component/Pages/AllReviews/AllReviews';
+import Payment from './component/Pages/Payment/Payment';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/loading' element={<Loading></Loading>}></Route>
         <Route path='/allreviews' element={<AllReviews></AllReviews>}></Route>
+        <Route path='/payment/:orderId' element={<Payment></Payment>}></Route>
         <Route path='/product/:id' element={<RequireAuth>
           <SingleProduct></SingleProduct>
         </RequireAuth>
