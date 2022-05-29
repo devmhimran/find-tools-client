@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import './Navbar.css'
+import logo from '../../../Assets/find-tools-logo.png'
 
 const Navbar = () => {
     const [user] = useAuthState(auth);
@@ -35,7 +36,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">Find Tools</Link>
+                    <Link to='/' className="w-1/4"><img src={logo} alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
