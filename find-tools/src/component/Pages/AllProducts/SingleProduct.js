@@ -9,6 +9,7 @@ const SingleProduct = () => {
     const [product, setProduct] = useState([]);
     const navigate = useNavigate();
     const { _id, productImage, productName, productDescription, productQuantity, productPrice, productMinimumQuantity } = product;
+    const [disable, setDisable] = useState(false);
     const { id } = useParams();
     useEffect(() => {
         fetch(`http://localhost:5000/product/${id}`)
@@ -20,6 +21,9 @@ const SingleProduct = () => {
             e.preventDefault();
         }
     };
+    const minimumQuantity = parseInt(productMinimumQuantity);
+        const totalQuantity = parseInt(productQuantity);
+        let disabledButton = false;
     const handlePurchase = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -30,22 +34,22 @@ const SingleProduct = () => {
         const status = 'unpaid';
 
         const quantityParse = parseInt(quantity);
-        const minimumQuantity = parseInt(productMinimumQuantity);
-        const totalQuantity = parseInt(productQuantity);
+        
 
         console.log(quantityParse, minimumQuantity, totalQuantity)
-
+        
         if (quantity <= 0) {
             alert('Enter Some quantity');
 
         } else if (quantityParse < minimumQuantity) {
-            alert('Please enter minimum quantity');
+            setDisable(true);
 
         }
         else if (quantityParse > totalQuantity) {
-            alert('You crossed quantity limit');
+            setDisable(true);
         }
         else {
+            setDisable(true);
             const isProceed = window.confirm('Are you wanted to place order?');
             if (isProceed) {
                 const order = {
@@ -143,7 +147,10 @@ const SingleProduct = () => {
                                             name="quantity" min="0" onKeyPress={preventMinus} />
                                     </div>
                                     <div className="checkout__input my-2">
-                                        <input type='submit' className="btn btn-primary" value='Purchase' />
+                                        <input type='submit' className="btn btn-primary" value='Purchase'  disabled={disable}/>
+                                        <div>
+                                        <small className='text-red-500'>{disable ? 'Please reload the page and enter correct quantity' : ''}</small>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
