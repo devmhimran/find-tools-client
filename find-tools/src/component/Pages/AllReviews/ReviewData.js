@@ -10,8 +10,8 @@ const ReviewData = ({ reviews }) => {
                 <div className="card-body">
                     <div className="rating__header flex justify-between">
                         <div className="profile">
-                            <div class="avatar">
-                                <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <div className="avatar">
+                                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                     <img src={photo} />
                                 </div>
                                 <h3 className='text-xl ml-3.5 font-semibold capitalize'>{name}</h3>

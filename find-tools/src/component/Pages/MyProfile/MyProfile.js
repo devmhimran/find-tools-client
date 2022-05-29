@@ -9,12 +9,12 @@ const MyProfile = () => {
     const { displayName, photoURL, email } = user;
     const [userData, setUserData] = useState('');
     useEffect(()=>{
-        fetch(`http://localhost:5000/users/${email}`)
+        fetch(`https://desolate-shelf-92508.herokuapp.com/users/${email}`)
         .then(res => res.json())
         .then(data => setUserData(data))
     },[]);
     // const { data: userData, isLoading, refetch } = useQuery('users', () =>
-    //     fetch(`http://localhost:5000/users/${email}`,
+    //     fetch(`https://desolate-shelf-92508.herokuapp.com/users/${email}`,
     //     ).then(res => {
     //         return res.json()
     //     })
@@ -33,7 +33,7 @@ const MyProfile = () => {
             phoneNumber: phoneNumber,
             linkedInProfile: linkedInProfile
         };
-        fetch(`http://localhost:5000/update/${email}`, {
+        fetch(`https://desolate-shelf-92508.herokuapp.com/update/${email}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

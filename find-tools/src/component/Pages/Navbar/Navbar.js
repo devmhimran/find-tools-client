@@ -55,7 +55,7 @@ const Navbar = () => {
                             <>
                                 <div className="dropdown dropdown-end">
                                     <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-                                        <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                             <img src={user.photoURL} />
                                         </div>
                                         {/* <div className="w-10 rounded-full ring-primary">

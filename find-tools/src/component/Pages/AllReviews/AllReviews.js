@@ -5,7 +5,7 @@ import ReviewData from './ReviewData';
 
 const AllReviews = () => {
     const { data: reviews, isLoading, refetch } = useQuery('reviews', () =>
-        fetch(`http://localhost:5000/reviews`,
+        fetch(`https://desolate-shelf-92508.herokuapp.com/reviews`,
             {
                 method: 'GET',
                 headers: {
@@ -26,7 +26,7 @@ const AllReviews = () => {
                 <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
 
                     {
-                        reviews.map(reviews => <ReviewData reviews={reviews}></ReviewData>)
+                        reviews.map(reviews => <ReviewData key={reviews._id} reviews={reviews}></ReviewData>)
                     }
 
                 </div>

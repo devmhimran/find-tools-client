@@ -8,7 +8,7 @@ import UserRow from './UserRow';
 
 const MakeAdmin = () => {
     const { data: userData, isLoading, refetch } = useQuery('users', () =>
-        fetch('http://localhost:5000/users',
+        fetch('https://desolate-shelf-92508.herokuapp.com/users',
             // {
             //     method: 'GET',
             //     headers: {
@@ -26,7 +26,7 @@ const MakeAdmin = () => {
     // const [usersData, setUsersData] = useState([]);
     // const [user] = useAuthState(auth);
     // useEffect(()=>{
-    //     fetch('http://localhost:5000/users')
+    //     fetch('https://desolate-shelf-92508.herokuapp.com/users')
     //     .then(res => res.json())
     //     .then(data => setUsersData(data))
     // },[user]);

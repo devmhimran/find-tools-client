@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Toaster } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 import DeleteConfirmModal from '../Dashboard/DeleteConfirmModal';
@@ -11,13 +12,13 @@ const MyOrders = () => {
     const [cancelOrder, setCancelOrder] = useState(null);
     // const [orders, setOrders] = useState([]);
     // useEffect(()=>{
-    //     fetch(`http://localhost:5000/orders?email=${user.email}`)
+    //     fetch(`https://desolate-shelf-92508.herokuapp.com/orders?email=${user.email}`)
     //     .then(res=>res.json())
     //     .then(data => setOrders(data))
     // },[]);
 
     const { data: userOrder, isLoading, refetch } = useQuery('myOrders', () =>
-        fetch(`http://localhost:5000/orders?email=${user.email}`,
+        fetch(`https://desolate-shelf-92508.herokuapp.com/orders?email=${user.email}`,
             {
                 method: 'GET',
                 headers: {
@@ -29,7 +30,7 @@ const MyOrders = () => {
             return res.json()
         })
     );
-    if(isLoading){
+    if (isLoading) {
         return <Loading></Loading>
     }
     return (
@@ -52,7 +53,11 @@ const MyOrders = () => {
                     </tbody>
                 </table>
             </div>
-            { cancelOrder && <DeleteConfirmModal cancelOrder={cancelOrder}  setCancelOrder={setCancelOrder} refetch={refetch}></DeleteConfirmModal> }
+            {cancelOrder && <DeleteConfirmModal cancelOrder={cancelOrder} setCancelOrder={setCancelOrder} refetch={refetch}></DeleteConfirmModal>}
+            <Toaster
+                position="bottom-center"
+                reverseOrder={false}
+            />
         </div>
     );
 };

@@ -6,7 +6,7 @@ import AllOrderRow from './AllOrderRow';
 const ManageAllOrders = () => {
     // const [products, setProducts] = useState([]);
     const { data: orders, isLoading, refetch } = useQuery('manageAllOrders', () =>
-        fetch("http://localhost:5000/allOrders",
+        fetch("https://desolate-shelf-92508.herokuapp.com/allOrders",
             {
                 method: 'GET',
                 headers: {

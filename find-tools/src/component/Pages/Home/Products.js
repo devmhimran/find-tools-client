@@ -4,7 +4,7 @@ import ProductData from '../AllProducts/ProductData';
 const Products = () => {
     const [products, setProducts] = useState([]);
     useState(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://desolate-shelf-92508.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);

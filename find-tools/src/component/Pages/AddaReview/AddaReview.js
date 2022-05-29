@@ -9,7 +9,7 @@ const AddaReview = () => {
     const [user] = useAuthState(auth);
     const { displayName, email, photoURL } = user;
     const { data: userOrder, isLoading, refetch } = useQuery('myOrders', () =>
-        fetch(`http://localhost:5000/orders?email=${email}`,
+        fetch(`https://desolate-shelf-92508.herokuapp.com/orders?email=${email}`,
             {
                 method: 'GET',
                 headers: {
@@ -37,7 +37,7 @@ const AddaReview = () => {
             rating: rating,
             description: description
         }
-        fetch('http://localhost:5000/review', {
+        fetch('https://desolate-shelf-92508.herokuapp.com/review', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

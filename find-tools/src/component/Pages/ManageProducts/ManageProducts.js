@@ -5,14 +5,14 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
     useState(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://desolate-shelf-92508.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
     return (
         <div className="container mx-auto">
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>Serial</th>

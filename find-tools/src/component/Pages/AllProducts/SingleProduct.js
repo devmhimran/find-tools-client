@@ -12,7 +12,7 @@ const SingleProduct = () => {
     const [disable, setDisable] = useState(false);
     const { id } = useParams();
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${id}`)
+        fetch(`https://desolate-shelf-92508.herokuapp.com/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id]);
@@ -63,7 +63,7 @@ const SingleProduct = () => {
                     productPrice:productPrice,
                     status: status
                 }
-                fetch(`http://localhost:5000/order`, {
+                fetch(`https://desolate-shelf-92508.herokuapp.com/order`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -78,7 +78,7 @@ const SingleProduct = () => {
 
                 const updatedQuantity = productQuantity - quantityParse;
                 const totalUpdatedQuantity = {productQuantity: updatedQuantity}
-                fetch(`http://localhost:5000/product/${id}`, {
+                fetch(`https://desolate-shelf-92508.herokuapp.com/product/${id}`, {
                     method: "PUT",
                     headers: {
                         "content-type": "application/json",

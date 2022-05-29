@@ -57,12 +57,12 @@ const MyPortolio = () => {
             </div>
             <div className="educational">
                 <h1 className='text-2xl lg:text-5xl font-bold text-center'>Educational Background</h1>
-                <div class="hero py-14 lg:py-24 my-10 bg-slate-200 rounded-lg">
-                    <div class="hero-content flex-col lg:flex-row">
-                        <img src="https://www.bubt.edu.bd/assets/componats/new-image/BUBT-Logo.png" class="w-7/12 lg:w-80 rounded-lg" />
+                <div className="hero py-14 lg:py-24 my-10 bg-slate-200 rounded-lg">
+                    <div className="hero-content flex-col lg:flex-row">
+                        <img src="https://www.bubt.edu.bd/assets/componats/new-image/BUBT-Logo.png" className="w-7/12 lg:w-80 rounded-lg" />
                         <div className='ml-5'>
-                            <h1 class="text-5xl font-bold">Bsc. in CSE</h1>
-                            <p class="py-6">I've successfully complete Bsc. in CSE from Bangladesh University of Business and Technology (BUBT).
+                            <h1 className="text-5xl font-bold">Bsc. in CSE</h1>
+                            <p className="py-6">I've successfully complete Bsc. in CSE from Bangladesh University of Business and Technology (BUBT).
                                 Since 2018-2022
                             </p>
                         </div>

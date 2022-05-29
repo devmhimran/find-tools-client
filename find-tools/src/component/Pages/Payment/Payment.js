@@ -9,7 +9,7 @@ import Loading from '../Loading/Loading';
 const Payment = () => {
     const { orderId } = useParams();
     const stripePromise = loadStripe('pk_test_51L4kRpEVFVIGLa64awGGlTdmhNnTHNw4ZRfcCd4UImjCzb5fHPNtsnQcfvoi5DVlvF6kpxJ1nW7RkV4ubIkEUcCn00NGgUYtHX');
-    const url = `http://localhost:5000/order/${orderId}`;
+    const url = `https://desolate-shelf-92508.herokuapp.com/order/${orderId}`;
     const { data: order, isLoading } = useQuery(['singleOrder', orderId], () => fetch(url, {
         method: 'GET',
         headers: {
