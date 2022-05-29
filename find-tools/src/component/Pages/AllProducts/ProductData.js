@@ -15,7 +15,8 @@ const ProductData = ({ products }) => {
         <p className='text-base my-3'>{productDescription.slice(0, 45)}[...]</p>
         <div className='flex justify-between'>
           <p className='text-2xl mb-2 font-semibold'>${productPrice}</p>
-          <p className='text-lg mb-2 font-semibold text-right'>{productQuantity > 0 ? 'Available' : 'Not Available'}</p>
+          <p className='text-lg mb-2 font-semibold text-right'>{productQuantity > 0 ? 'Available' : ''}</p>
+          <p className='text-lg mb-2 font-semibold text-right text-red-500'>{productQuantity > 0 ? '' : 'Not Available'}</p>
         </div>
         <button onClick={()=>handleSingleProduct(_id)} className="btn btn-primary">Buy Now</button>
       </div>
