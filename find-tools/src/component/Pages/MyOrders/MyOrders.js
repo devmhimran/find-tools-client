@@ -49,6 +49,7 @@ const MyOrders = () => {
                     <tbody>
                         {
                             userOrder.map((data, index) => <OrderRow key={data._id} data={data} index={index} refetch={refetch} setCancelOrder={setCancelOrder}></OrderRow>)
+                            // console.log(userOrder)
                         }
                     </tbody>
                 </table>

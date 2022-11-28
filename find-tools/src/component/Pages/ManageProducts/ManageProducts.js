@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
-    useState(() => {
+    useEffect(() => {
         fetch('https://desolate-shelf-92508.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))

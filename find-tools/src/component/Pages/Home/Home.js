@@ -1,5 +1,6 @@
 import React from 'react';
 import Delivery from './Delivery';
+import DemoInfo from './DemoInfo';
 import Footer from './Footer';
 import Hero from './Hero';
 import Offer from './Offer';
@@ -10,13 +11,14 @@ import Summery from './Summery';
 
 const Home = () => {
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto w-full lg:w-3/4 '>
             <Hero></Hero>
-            <Delivery></Delivery>
+            {/* <Delivery></Delivery> */}
+            <DemoInfo/>
             <Products></Products>
-            <Summery></Summery>
-            <Review></Review>
             <Offer></Offer>
+            <Review></Review>
+            <Summery></Summery>
         </div>
     );
 };

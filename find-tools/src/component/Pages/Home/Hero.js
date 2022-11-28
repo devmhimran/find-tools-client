@@ -4,7 +4,7 @@ import heroImage from '../../../Assets/find-tools-hero-image.jpg';
 
 const Hero = () => {
     return (
-            <div className="hero h-5/6 bg-black py-10 lg:py-20 px-4 lg:px-28 my-10 rounded-3xl">
+            <div className="hero h-5/6 bg-black py-12 lg:py-32 px-4 lg:px-28 my-10 rounded-3xl">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src={heroImage} alt='' className="max-w-sm rounded-lg shadow-2xl w-full mx-auto" />
                     <div>
