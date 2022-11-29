@@ -5,7 +5,7 @@ import offerImage from '../../../Assets/find-tools-cycle-mage-06.jpg'
 const Offer = () => {
     return (
         <div>
-            <div className="hero h-5/6 py-14 lg:py-8 px-4 lg:px-28 my-10 rounded-xl">
+            <div className="hero h-5/6 py-14 lg:py-8 px-4 my-10 rounded-xl">
                 <div className="hero-content flex-col gap-6 lg:flex-row-reverse">
 
                     <div>
@@ -15,7 +15,7 @@ const Offer = () => {
                             <Link to='/allproducts' className="btn btn-primary">Get Started</Link>
                         </div>
                     </div>
-                    <img src={offerImage} className="max-w-sm rounded-lg shadow-2xl  w-full mx-auto" alt='' />
+                    <img src={offerImage} className="lg:w-[550px] rounded-lg shadow-2xl w-full" alt='' />
                 </div>
             </div>
         </div>
