@@ -6,7 +6,7 @@ import AllOrderRow from './AllOrderRow';
 const ManageAllOrders = () => {
     // const [products, setProducts] = useState([]);
     const { data: orders, isLoading, refetch } = useQuery('manageAllOrders', () =>
-        fetch("https://desolate-shelf-92508.herokuapp.com/allOrders",
+        fetch("https://find-tools-server.vercel.app/allOrders",
             {
                 method: 'GET',
                 headers: {

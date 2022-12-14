@@ -5,7 +5,7 @@ import ProductData from './ProductData';
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://desolate-shelf-92508.herokuapp.com/products')
+        fetch('https://find-tools-server.vercel.app/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);

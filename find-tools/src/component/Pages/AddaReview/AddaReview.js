@@ -9,7 +9,7 @@ const AddaReview = () => {
     const [user] = useAuthState(auth);
     const { displayName, email, photoURL } = user;
     const { data: userOrder, isLoading, refetch } = useQuery('myOrders', () =>
-        fetch(`https://desolate-shelf-92508.herokuapp.com/orders?email=${email}`,
+        fetch(`https://find-tools-server.vercel.app/orders?email=${email}`,
             {
                 method: 'GET',
                 headers: {
@@ -37,7 +37,7 @@ const AddaReview = () => {
             rating: rating,
             description: description
         }
-        fetch('https://desolate-shelf-92508.herokuapp.com/review', {
+        fetch('https://find-tools-server.vercel.app/review', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

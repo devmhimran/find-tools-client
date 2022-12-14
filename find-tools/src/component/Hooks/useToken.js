@@ -8,7 +8,7 @@ const useToken = user => {
         const email = user?.user?.email;
         const currentUser = { email: email };
         if (email) {
-            fetch(`https://desolate-shelf-92508.herokuapp.com/user/${email}`, {
+            fetch(`https://find-tools-server.vercel.app/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

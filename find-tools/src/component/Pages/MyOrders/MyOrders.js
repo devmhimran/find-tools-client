@@ -12,13 +12,13 @@ const MyOrders = () => {
     const [cancelOrder, setCancelOrder] = useState(null);
     // const [orders, setOrders] = useState([]);
     // useEffect(()=>{
-    //     fetch(`https://desolate-shelf-92508.herokuapp.com/orders?email=${user.email}`)
+    //     fetch(`https://find-tools-server.vercel.app/orders?email=${user.email}`)
     //     .then(res=>res.json())
     //     .then(data => setOrders(data))
     // },[]);
 
     const { data: userOrder, isLoading, refetch } = useQuery('myOrders', () =>
-        fetch(`https://desolate-shelf-92508.herokuapp.com/orders?email=${user.email}`,
+        fetch(`https://find-tools-server.vercel.app/orders?email=${user.email}`,
             {
                 method: 'GET',
                 headers: {

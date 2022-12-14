@@ -8,7 +8,7 @@ import UserRow from './UserRow';
 
 const MakeAdmin = () => {
     const { data: userData, isLoading, refetch } = useQuery('users', () =>
-        fetch('https://desolate-shelf-92508.herokuapp.com/users',
+        fetch('https://find-tools-server.vercel.app/users',
             // {
             //     method: 'GET',
             //     headers: {
@@ -26,7 +26,7 @@ const MakeAdmin = () => {
     // const [usersData, setUsersData] = useState([]);
     // const [user] = useAuthState(auth);
     // useEffect(()=>{
-    //     fetch('https://desolate-shelf-92508.herokuapp.com/users')
+    //     fetch('https://find-tools-server.vercel.app/users')
     //     .then(res => res.json())
     //     .then(data => setUsersData(data))
     // },[user]);

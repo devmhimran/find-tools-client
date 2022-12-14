@@ -5,7 +5,7 @@ import ReviewData from './ReviewData';
 
 const AllReviews = () => {
     const { data: reviews, isLoading, refetch } = useQuery('reviews', () =>
-        fetch(`https://desolate-shelf-92508.herokuapp.com/reviews`,
+        fetch(`https://find-tools-server.vercel.app/reviews`,
             {
                 method: 'GET',
                 headers: {

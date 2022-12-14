@@ -6,7 +6,7 @@ const useAdminCheck = (user) => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`https://desolate-shelf-92508.herokuapp.com/admin/${email}`, {
+            fetch(`https://find-tools-server.vercel.app/admin/${email}`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',

@@ -5,7 +5,7 @@ const DeleteConfirmModal = ({cancelOrder, refetch, setCancelOrder}) => {
     const {_id, productName, productPrice, quantity} = cancelOrder;
     const total = productPrice * quantity;
     const handleCancel = () =>{
-        fetch(`https://desolate-shelf-92508.herokuapp.com/order/${_id}` , {
+        fetch(`https://find-tools-server.vercel.app/order/${_id}` , {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

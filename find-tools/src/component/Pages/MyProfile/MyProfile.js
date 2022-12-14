@@ -9,12 +9,12 @@ const MyProfile = () => {
     const { displayName, photoURL, email } = user;
     const [userData, setUserData] = useState('');
     useEffect(()=>{
-        fetch(`https://desolate-shelf-92508.herokuapp.com/users/${email}`)
+        fetch(`https://find-tools-server.vercel.app/users/${email}`)
         .then(res => res.json())
         .then(data => setUserData(data))
     },[]);
     // const { data: userData, isLoading, refetch } = useQuery('users', () =>
-    //     fetch(`https://desolate-shelf-92508.herokuapp.com/users/${email}`,
+    //     fetch(`https://find-tools-server.vercel.app/users/${email}`,
     //     ).then(res => {
     //         return res.json()
     //     })
@@ -33,7 +33,7 @@ const MyProfile = () => {
             phoneNumber: phoneNumber,
             linkedInProfile: linkedInProfile
         };
-        fetch(`https://desolate-shelf-92508.herokuapp.com/update/${email}`, {
+        fetch(`https://find-tools-server.vercel.app/update/${email}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

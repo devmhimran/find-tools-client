@@ -30,7 +30,7 @@ const AddProduct = () => {
                     productMinimumQuantity:minimumQuantity,
                     productPrice: price
                 }
-                fetch('https://desolate-shelf-92508.herokuapp.com/products', {
+                fetch('https://find-tools-server.vercel.app/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

@@ -15,7 +15,7 @@ const CheckoutForm = ({ order }) => {
 
     useEffect(() => {
         if (price) {
-            fetch('https://desolate-shelf-92508.herokuapp.com/create-payment-intent', {
+            fetch('https://find-tools-server.vercel.app/create-payment-intent', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -82,7 +82,7 @@ const CheckoutForm = ({ order }) => {
                 transactionId: paymentIntent.id,
 
             }
-            fetch(`https://desolate-shelf-92508.herokuapp.com/order/${_id}`, {
+            fetch(`https://find-tools-server.vercel.app/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
