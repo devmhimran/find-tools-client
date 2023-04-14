@@ -9,13 +9,13 @@ import UserRow from './UserRow';
 const MakeAdmin = () => {
     const { data: userData, isLoading, refetch } = useQuery('users', () =>
         fetch('https://find-tools-server.vercel.app/users',
-            // {
-            //     method: 'GET',
-            //     headers: {
-            //         'content-type': 'application/json',
-            //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            //     }
-            // }
+            {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            }
         ).then(res => {
             return res.json()
         })
