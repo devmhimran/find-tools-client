@@ -4,7 +4,7 @@ const AllOrderRow = ({ data, refetch, index }) => {
   const handleStatus = (e) => {
     e.preventDefault();
     const status = e.target.status.value;
-    fetch(`http://localhost:5000/order-status/${data._id}`, {
+    fetch(`https://find-tools-server.vercel.app/order-status/${data._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

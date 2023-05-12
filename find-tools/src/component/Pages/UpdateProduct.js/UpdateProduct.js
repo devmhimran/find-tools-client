@@ -31,7 +31,7 @@ const UpdateProduct = () => {
       productMinimumQuantity: minimumQuantity,
       productPrice: price,
     };
-    fetch(`http://localhost:5000/update-product/${id}`, {
+    fetch(`https://find-tools-server.vercel.app/update-product/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

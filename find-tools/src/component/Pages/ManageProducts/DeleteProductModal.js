@@ -4,12 +4,15 @@ import toast from "react-hot-toast";
 const DeleteProductModal = ({ deleteProduct, setDeleteProduct, refetch }) => {
   const [loading, setLoading] = useState(false);
   const handleCancel = () => {
-    fetch(`http://localhost:5000/delete-products/${deleteProduct._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://find-tools-server.vercel.app/delete-products/${deleteProduct._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
