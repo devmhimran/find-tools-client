@@ -15,6 +15,6 @@ code {
     monospace;
 }
 
-.drawer-toggle ~ .drawer-content {
+/* .drawer-toggle ~ .drawer-content {
   z-index: 100 !important ;
-}
+} */

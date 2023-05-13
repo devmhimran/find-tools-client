@@ -55,7 +55,7 @@ const ManageAllOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {[...orders].reverse().map((data, index) => (
+            {[...orders]?.reverse().map((data, index) => (
               <AllOrderRow
                 key={data._id}
                 data={data}
