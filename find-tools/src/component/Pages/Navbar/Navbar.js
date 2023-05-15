@@ -20,12 +20,12 @@ const Navbar = () => {
       <li>
         <Link to="/allproducts">All products</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/blog">Blog</Link>
       </li>
       <li>
         <Link to="/myportfolio">My Portfolio</Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/allreviews">All Reviews</Link>
       </li>
@@ -66,7 +66,7 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-          <Link to="/" className="w-1/4">
+          <Link to="/" className="w-20 lg:w-28">
             <img src={logo} alt="" />
           </Link>
         </div>

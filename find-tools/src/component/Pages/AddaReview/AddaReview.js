@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import { signOut } from 'firebase/auth';
 
 const AddaReview = () => {
     const [user] = useAuthState(auth);
@@ -18,8 +19,12 @@ const AddaReview = () => {
                 }
             }
         ).then(res => {
-            return res.json()
-        })
+            if (res.status === 401 || res.status === 403) {
+              signOut(auth);
+              localStorage.removeItem("accessToken");
+            }
+            return res.json();
+          })
     );
     if (isLoading) {
         return <Loading></Loading>

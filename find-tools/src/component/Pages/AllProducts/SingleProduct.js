@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const SingleProduct = () => {
   const [user] = useAuthState(auth);
@@ -74,7 +75,13 @@ const SingleProduct = () => {
           },
           body: JSON.stringify(order),
         })
-          .then((res) => res.json())
+          .then((res) => {
+            if (res.status === 401 || res.status === 403) {
+              signOut(auth);
+              localStorage.removeItem("accessToken");
+            }
+            return res.json();
+          })
           .then((data) => {});
 
         const updatedQuantity = productQuantity - quantityParse;
@@ -87,7 +94,13 @@ const SingleProduct = () => {
           },
           body: JSON.stringify(totalUpdatedQuantity),
         })
-          .then((res) => res.json())
+          .then((res) => {
+            if (res.status === 401 || res.status === 403) {
+              signOut(auth);
+              localStorage.removeItem("accessToken");
+            }
+            return res.json();
+          })
           .then((data) => {
             if (isProceed) {
               window.location.reload();

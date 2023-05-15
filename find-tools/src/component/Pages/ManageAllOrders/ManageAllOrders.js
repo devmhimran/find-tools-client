@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Loading/Loading";
 import AllOrderRow from "./AllOrderRow";
+import { signOut } from "firebase/auth";
+import auth from "../../firebase.init";
 
 const ManageAllOrders = () => {
   // const [products, setProducts] = useState([]);
@@ -17,6 +19,10 @@ const ManageAllOrders = () => {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+      }
       return res.json();
     })
   );

@@ -7,6 +7,8 @@ import { Toaster } from "react-hot-toast";
 import { useQuery } from "react-query";
 import Loading from "../Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import auth from "../../firebase.init";
 
 const ManageProducts = () => {
   //   const [products, setProducts] = useState([]);
@@ -25,6 +27,10 @@ const ManageProducts = () => {
     fetch(`https://find-tools-server.vercel.app/products`, {
       method: "GET",
     }).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+      }
       return res.json();
     })
   );
