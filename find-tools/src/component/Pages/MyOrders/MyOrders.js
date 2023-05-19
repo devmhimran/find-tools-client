@@ -6,16 +6,12 @@ import auth from "../../firebase.init";
 import DeleteConfirmModal from "../Dashboard/DeleteConfirmModal";
 import Loading from "../Loading/Loading";
 import OrderRow from "./OrderRow";
+import { signOut } from "firebase/auth";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
   const [cancelOrder, setCancelOrder] = useState(null);
-  // const [orders, setOrders] = useState([]);
-  // useEffect(()=>{
-  //     fetch(`https://find-tools-server.vercel.app/orders?email=${user.email}`)
-  //     .then(res=>res.json())
-  //     .then(data => setOrders(data))
-  // },[]);
+  let content;
 
   const {
     data: userOrder,
@@ -29,9 +25,37 @@ const MyOrders = () => {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+      }
       return res.json();
     })
   );
+
+  if (userOrder.length) {
+    content = [...userOrder]
+      .reverse()
+      .map((data, index) => (
+        <OrderRow
+          key={data._id}
+          data={data}
+          index={index}
+          refetch={refetch}
+          setCancelOrder={setCancelOrder}
+        ></OrderRow>
+      ));
+  } else {
+  }
+
+  if (userOrder.length === 0) {
+    content = (
+      <>
+        <h1>No Order Available</h1>
+      </>
+    );
+  }
+
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -49,15 +73,7 @@ const MyOrders = () => {
           </thead>
           <tbody>
             {
-              [...userOrder].reverse().map((data, index) => (
-                <OrderRow
-                  key={data._id}
-                  data={data}
-                  index={index}
-                  refetch={refetch}
-                  setCancelOrder={setCancelOrder}
-                ></OrderRow>
-              ))
+              content
               // console.log(userOrder)
             }
           </tbody>
