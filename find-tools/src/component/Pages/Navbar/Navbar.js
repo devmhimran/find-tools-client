@@ -20,12 +20,6 @@ const Navbar = () => {
       <li>
         <Link to="/allproducts">All products</Link>
       </li>
-      {/* <li>
-        <Link to="/blog">Blog</Link>
-      </li>
-      <li>
-        <Link to="/myportfolio">My Portfolio</Link>
-      </li> */}
       <li>
         <Link to="/allreviews">All Reviews</Link>
       </li>
@@ -91,9 +85,6 @@ const Navbar = () => {
                   <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <img src={user.photoURL} />
                   </div>
-                  {/* <div className="w-10 rounded-full ring-primary">
-                                            <img src={user.photoURL} alt='' />
-                                        </div> */}
                 </label>
                 <ul
                   tabIndex="0"

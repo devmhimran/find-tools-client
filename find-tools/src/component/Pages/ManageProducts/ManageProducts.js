@@ -9,16 +9,13 @@ import Loading from "../Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
+import PageTitle from "../PageTitle/PageTitle";
 
 const ManageProducts = () => {
   //   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const [deleteProduct, setDeleteProduct] = useState(null);
-  //   useEffect(() => {
-  //     fetch("https://find-tools-server.vercel.app/products")
-  //       .then((res) => res.json())
-  //       .then((data) => setProducts(data));
-  //   }, []);
+
   const {
     data: products,
     isLoading,
@@ -75,8 +72,9 @@ const ManageProducts = () => {
 
   return (
     <div className="container mx-auto">
+      <PageTitle title="Manage Products" />
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className={`table w-full ${isLoading ? "h-[60vh]" : ""}`}>
           <thead>
             <tr>
               <th>Serial</th>

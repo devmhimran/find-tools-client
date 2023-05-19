@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import PageTitle from "../PageTitle/PageTitle";
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -56,6 +57,7 @@ const UpdateProduct = () => {
 
   return (
     <div className="container">
+      <PageTitle title="Update Product" />
       <h1 className="text-2xl mb-5 lg:mb-10 font-bold">Update Product</h1>
       <div className="card bg-white lg:w-6/12">
         <div className="card-body">

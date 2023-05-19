@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import toast, { Toaster } from "react-hot-toast";
 import auth from "../../firebase.init";
+import PageTitle from "../PageTitle/PageTitle";
 
 const AddProduct = () => {
   const imageApi = "ef367f576eca302d4916e3889c6e0cc6";
@@ -50,7 +51,6 @@ const AddProduct = () => {
           .then((data) => {
             if (data.insertedId) {
               console.log(data);
-              // toast.success('Successfully toasted!');
             }
           });
       });
@@ -60,6 +60,7 @@ const AddProduct = () => {
   };
   return (
     <div className="container">
+      <PageTitle title="Add Product" />
       <h1 className="text-2xl mb-5 lg:mb-10 font-bold">Add A Product</h1>
       <div className="card bg-white lg:w-6/12">
         <div className="card-body">

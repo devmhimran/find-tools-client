@@ -4,11 +4,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
+import PageTitle from "../PageTitle/PageTitle";
 
 const SingleProduct = () => {
   const [user] = useAuthState(auth);
   const [product, setProduct] = useState([]);
-  const navigate = useNavigate();
   const {
     _id,
     productImage,
@@ -115,6 +115,7 @@ const SingleProduct = () => {
   };
   return (
     <div className="container mx-auto bg-violet-100 my-11 rounded-3xl p-1 lg:p-11">
+      <PageTitle title={`${productName}`} />
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="product__detail__main">
           <div className="card drop-shadow-xl rounded-3xl p-5 bg-white w-full mb-3 lg:mb-0 lg:w-10/12">

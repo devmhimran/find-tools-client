@@ -3,12 +3,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
 import useAdminCheck from "../../Hooks/useAdminCheck";
+import PageTitle from "../PageTitle/PageTitle";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [admin] = useAdminCheck(user);
   return (
     <div className="container mx-auto">
+      <PageTitle title="Dashboard" />
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawer"

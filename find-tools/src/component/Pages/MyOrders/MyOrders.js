@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Toaster } from "react-hot-toast";
 import { useQuery } from "react-query";
@@ -7,6 +7,7 @@ import DeleteConfirmModal from "../Dashboard/DeleteConfirmModal";
 import Loading from "../Loading/Loading";
 import OrderRow from "./OrderRow";
 import { signOut } from "firebase/auth";
+import PageTitle from "../PageTitle/PageTitle";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
@@ -33,9 +34,11 @@ const MyOrders = () => {
     })
   );
 
-  if (userOrder.length) {
+  if (isLoading) {
+    content = <Loading></Loading>;
+  } else {
     content = [...userOrder]
-      .reverse()
+      ?.reverse()
       .map((data, index) => (
         <OrderRow
           key={data._id}
@@ -45,24 +48,12 @@ const MyOrders = () => {
           setCancelOrder={setCancelOrder}
         ></OrderRow>
       ));
-  } else {
-  }
-
-  if (userOrder.length === 0) {
-    content = (
-      <>
-        <h1>No Order Available</h1>
-      </>
-    );
-  }
-
-  if (isLoading) {
-    return <Loading></Loading>;
   }
   return (
     <div className="container">
+      <PageTitle title="My Orders" />
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className={`table w-full ${isLoading ? "h-[60vh]" : ""}`}>
           <thead>
             <tr>
               <th></th>
@@ -71,14 +62,10 @@ const MyOrders = () => {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
-            {
-              content
-              // console.log(userOrder)
-            }
-          </tbody>
+          <tbody>{content}</tbody>
         </table>
       </div>
+
       {cancelOrder && (
         <DeleteConfirmModal
           cancelOrder={cancelOrder}

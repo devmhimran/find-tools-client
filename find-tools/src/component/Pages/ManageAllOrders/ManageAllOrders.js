@@ -4,9 +4,9 @@ import Loading from "../Loading/Loading";
 import AllOrderRow from "./AllOrderRow";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
+import PageTitle from "../PageTitle/PageTitle";
 
 const ManageAllOrders = () => {
-  // const [products, setProducts] = useState([]);
   const {
     data: orders,
     isLoading,
@@ -27,29 +27,13 @@ const ManageAllOrders = () => {
     })
   );
 
-  //   const orderStatus = (status) => {
-  //     console.log(status);
-  //     fetch(`https://find-tools-server.vercel.app/order-status/${_id}`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "content-type": "application/json",
-  //         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  //       },
-  //       body: JSON.stringify(status),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         //   setSpinner(false);
-  //         console.log(data);
-  //       });
-  //   };
-
   if (isLoading) {
     return <Loading></Loading>;
   }
 
   return (
     <div className="container">
+      <PageTitle title="Manage All Order" />
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -67,7 +51,6 @@ const ManageAllOrders = () => {
                 data={data}
                 index={index}
                 refetch={refetch}
-                // orderStatus={orderStatus}
               ></AllOrderRow>
             ))}
           </tbody>

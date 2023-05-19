@@ -14,10 +14,8 @@ const AllOrderRow = ({ data, refetch, index }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        //   setSpinner(false);
         console.log(data);
       });
-    // orderStatus(status);
   };
   refetch();
   return (
@@ -32,10 +30,8 @@ const AllOrderRow = ({ data, refetch, index }) => {
             name="status"
             required
           >
-            {/* <option {data.status.includes('') ? }>Shipping</option> */}
             <option
               value="pending"
-              //   selected={data.status.includes("pending") && "selected"}
               selected={
                 "pending" === data.status
                   ? "selected"
@@ -49,14 +45,12 @@ const AllOrderRow = ({ data, refetch, index }) => {
             <option
               value="shipping"
               selected={"shipping" === data.status ? "selected" : ""}
-              //   selected={data.status.includes("shipping") && "selected"}
             >
               Shipping
             </option>
             <option
               value="complete"
               selected={"complete" === data.status ? "selected" : ""}
-              //   selected={data.status.includes("shipping") && "selected"}
             >
               Complete
             </option>

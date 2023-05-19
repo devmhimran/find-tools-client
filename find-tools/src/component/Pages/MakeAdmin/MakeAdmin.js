@@ -6,6 +6,7 @@ import auth from "../../firebase.init";
 import Loading from "../Loading/Loading";
 import UserRow from "./UserRow";
 import { signOut } from "firebase/auth";
+import PageTitle from "../PageTitle/PageTitle";
 
 const MakeAdmin = () => {
   const {
@@ -30,15 +31,9 @@ const MakeAdmin = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  // const [usersData, setUsersData] = useState([]);
-  // const [user] = useAuthState(auth);
-  // useEffect(()=>{
-  //     fetch('https://find-tools-server.vercel.app/users')
-  //     .then(res => res.json())
-  //     .then(data => setUsersData(data))
-  // },[user]);
   return (
     <div className="container">
+      <PageTitle title="Make Admin" />
       <h1>All users</h1>
       <div className="overflow-x-auto border rounded-lg">
         <table className="table w-full">

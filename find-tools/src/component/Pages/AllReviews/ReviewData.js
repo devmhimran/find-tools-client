@@ -1,36 +1,38 @@
-import React from 'react';
-import { AiFillStar } from 'react-icons/ai';
-
+import React from "react";
+import { AiFillStar } from "react-icons/ai";
 
 const ReviewData = ({ reviews }) => {
-    const { name, email, photo, rating, description } = reviews;
-    return (
-        <div className="review__card">
-            <div className="card w-full bg-base-100 border">
-                <div className="card-body">
-                    <div className="rating__header flex justify-between">
-                        <div className="profile">
-                            <div className="avatar">
-                                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src={photo} />
-                                </div>
-                                <h3 className='text-xl ml-3.5 font-semibold capitalize'>{name}</h3>
-                            </div>
-                        </div>
-                        <div className="rating flex  items-center">
-                            <h3>{rating}</h3>
-                            <span className='ml-1 text-yellow-400'><AiFillStar></AiFillStar></span>
-                        </div>
-
-                    </div>
-                    <hr />
-                    <div className="rating__description">
-                        <p>{description}</p>
-                    </div>
+  const { name, photo, rating, description } = reviews;
+  return (
+    <div className="review__card">
+      <div className="card w-full bg-base-100 border">
+        <div className="card-body">
+          <div className="rating__header flex justify-between">
+            <div className="profile">
+              <div className="avatar">
+                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img src={photo} />
                 </div>
+                <h3 className="text-xl ml-3.5 font-semibold capitalize">
+                  {name}
+                </h3>
+              </div>
             </div>
+            <div className="rating flex  items-center">
+              <h3>{rating}</h3>
+              <span className="ml-1 text-yellow-400">
+                <AiFillStar></AiFillStar>
+              </span>
+            </div>
+          </div>
+          <hr />
+          <div className="rating__description">
+            <p>{description}</p>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ReviewData;

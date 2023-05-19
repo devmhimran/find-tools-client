@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const OrderRow = ({ data, index, refetch, setCancelOrder }) => {
-  const { _id, name, quantity, productName, status } = data;
+  const { _id, quantity, productName, status } = data;
   const navigate = useNavigate();
 
   const handlePay = (id) => {

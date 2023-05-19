@@ -32,7 +32,6 @@ const ProductData = ({ products }) => {
           >
             {productQuantity > 0 ? "Available" : "Not Available"}
           </p>
-          {/* <p className='text-lg mb-2 font-semibold text-right text-red-500'>{productQuantity > 0 ? '' : }</p> */}
         </div>
 
         <div className=" absolute bottom-3.5">
